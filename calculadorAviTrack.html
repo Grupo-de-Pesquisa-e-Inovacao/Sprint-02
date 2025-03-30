@@ -5,32 +5,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simulador Financeiro Avitrack Solutions</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <b>Quantidade de frangos:</b> <br />
-  <input type="number" id="input_qtdFrango" placeholder="Exemplo 10000..." /><br /><br />
+  <div class="mainframe">
+    <b>Quantidade de frangos:</b> <br />
+    <input type="number" id="input_qtdFrango" placeholder="Exemplo 10000..." /><br /><br />
 
-  <b>Peso médio dos frangos:</b> <br />
-  <input type="number" id="input_kgMedioFrango" placeholder="Exemplo 4.5Kg"/><br /><br />
+    <b>Peso médio dos frangos:</b> <br />
+    <input type="number" id="input_kgMedioFrango" placeholder="Exemplo 4.5Kg" /><br /><br />
 
-  <b>Preço de venda de cada frango:</b><br />
-  <input type="number" id="input_precoMedioFrango" placeholder="Exemplo R$8.00"/><br /><br />
+    <b>Preço de venda de cada frango:</b><br />
+    <input type="number" id="input_precoMedioFrango" placeholder="Exemplo R$8.00" /><br /><br />
 
-  <b>Custos de produção dos frangos:</b><br />
-  <input type="number" id="input_despesaMedioFrango" placeholder="Exemplo R$5.00"/><br /><br />
+    <b>Custos de produção dos frangos:</b><br />
+    <input type="number" id="input_despesaMedioFrango" placeholder="Exemplo R$5.00" /><br /><br />
 
-  <b>Quantidade de mortalidade por temperatura:</b><br />
-  <input type="number" name="" id="input_mortalidadeFrango" placeholder="Exemplo 10"/><br /><br />
+    <b>Quantidade de mortalidade por temperatura:</b><br />
+    <input type="number" name="" id="input_mortalidadeFrango" placeholder="Exemplo 10" /><br /><br />
 
-  <button onclick="calcularDepesas()">Calcular Despesas</button>
-  <br />
-  <div id="div_resultado"></div>
+    <button onclick="calcularDepesas()">Calcular Despesas</button>
+    <br />
+    <div id="div_resultado"></div>
+  </div>
 
 </body>
 
@@ -51,35 +49,55 @@
     var precoBrutoMortalidade = kiloMortalidade * precoMedioFrango;
     var perdaTotal = precoBrutoMortalidade;
     var porcentagemMorte = totalMortalidade / qtdFrango * 100
+
     if (porcentagemMorte < 5) {
+
       var corMortalidade = `green`;
       var situacao = `ACEITAVEL`;
+
     } else if (porcentagemMorte <= 10) {
+
       var corMortalidade = `orange`;
       var situacao = `ALERTA`;
+
     } else if (porcentagemMorte > 10) {
+
       var corMortalidade = `red`;
       var situacao = `CRÍTICO`;
+
     }
+
     // calculando a porcentagem de lucro
     var porcentagem = (perdaTotal / lucro) * 100
+
     // validação de campos com OR
     if (qtdFrango <= 0 || pesoMedioFrango <= 0 || precoMedioFrango <= 0 || despesaMedioFrango <= 0 || totalMortalidade <= 0) {
+
       alert(`Por favor insira valores validos`);
+
     } else {
       if (lucro == 0) {
+
         porcentagem = 0
+
       }
       if (porcentagem <= 0) {
+
         porcentagem = 0
+
       }
       if (lucro < 0) {
+
         var cor = `red`;
         var mensagem = `Sua perda líquida é de:`;
+
       } else {
+
         var cor = `green`;
         var mensagem = `Seu lucro líquido obtido é de:`;
+
       }
+
       div_resultado.innerHTML = `
         <br>
         A sua produção conta com <span style="color: blue;"><b>${qtdFrango.toFixed(0)}</b></span> cabeças de frango, com cada frango pesando em média ${pesoMedioFrango}Kg. O peso total é de: <span style="color: blue;"><b>${kiloTotal.toFixed(2)}Kg.</b></span><br>

@@ -1,0 +1,17 @@
+body {
+    display: flex;
+    font-family: 'Arial', sans-serif;
+    background-color: blanchedalmond;
+    align-content: center;
+    flex-flow: column wrap;
+}
+
+.mainframe {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+    border: 2px solid black;
+    margin: 20px;
+    padding: 10px;
+}
+
