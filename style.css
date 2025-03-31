@@ -11,6 +11,7 @@ body {
     flex-flow: column wrap;
     align-content: center;
     border: 2px solid black;
+    border-radius: 4px;
     margin: 20px;
     padding: 10px;
 }
