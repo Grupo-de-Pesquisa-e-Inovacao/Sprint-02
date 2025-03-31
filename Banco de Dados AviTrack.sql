@@ -1,6 +1,8 @@
 -- Active: 1739973101391@@127.0.0.1@3306@teste
 CREATE DATABASE avitrack;
+
 USE avitrack;
+
 CREATE TABLE empresaCliente(
 		idEmpresaCliente INT PRIMARY KEY AUTO_INCREMENT,
         nomeEmpresaCliente VARCHAR(50) NOT NULL,
@@ -13,6 +15,7 @@ CREATE TABLE empresaCliente(
         ruaEmpresaCliente VARCHAR(40)NOT NULL,
 		numeroEmpresaCliente VARCHAR(10)NOT NULL
 );
+
 CREATE TABLE funcionarioEmpresa(
     idFuncionarioEmpresa INT PRIMARY KEY AUTO_INCREMENT,
     nomeFuncionarioEmpresa VARCHAR(50) NOT NULL,
@@ -20,7 +23,8 @@ CREATE TABLE funcionarioEmpresa(
     emailFuncionarioEmpresa VARCHAR(70) NOT NULL UNIQUE,
     senhaFuncionarioEmpresa VARCHAR(30) NOT NULL,
     nomeEmpresa VARCHAR(50) NOT NULL
- );
+);
+
 CREATE TABLE sensor(
         idSensor INT PRIMARY KEY AUTO_INCREMENT,
         temperatura DECIMAL(4,2) NOT NULL,
