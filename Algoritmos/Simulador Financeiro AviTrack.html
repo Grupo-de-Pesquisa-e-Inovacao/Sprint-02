@@ -9,25 +9,60 @@
 </head>
 
 <body>
-  <div class="mainframe">
-    <b>Quantidade de frangos:</b> <br />
-    <input type="number" id="input_qtdFrango" placeholder="Exemplo 10000..." /><br /><br />
+  <!-- Div container que abrange todo o sistema -->
 
-    <b>Peso médio dos frangos:</b> <br />
-    <input type="number" id="input_kgMedioFrango" placeholder="Exemplo 4.5Kg" /><br /><br />
+  <div class="divContainer">
 
-    <b>Preço de venda de cada frango:</b><br />
-    <input type="number" id="input_precoMedioFrango" placeholder="Exemplo R$8.00" /><br /><br />
+    <!-- Div que mostra os resultados dos cálculos -->
+    <div id="divResultado1"></div>
 
-    <b>Custos de produção dos frangos:</b><br />
-    <input type="number" id="input_despesaMedioFrango" placeholder="Exemplo R$5.00" /><br /><br />
+    <div class="divConteudo">
 
-    <b>Quantidade de mortalidade por temperatura:</b><br />
-    <input type="number" name="" id="input_mortalidadeFrango" placeholder="Exemplo 10" /><br /><br />
+      <h1>Simulador Financeiro</h1>
+      <h2>AviTrack</h2>
 
-    <button onclick="calcularDepesas()">Calcular Despesas</button>
-    <br />
-    <div id="div_resultado"></div>
+
+      <div id="divInput">
+        <p class="textoInputs">Quantidade de frangos:</p>
+        <input type="number" id="input_qtdFrango" placeholder="Quantidade" />
+
+        <br><br>
+      </div>
+      <div id="divInput">
+
+        <p class="textoInputs">Peso médio dos frangos:</p>
+        <input type="number" id="input_kgMedioFrango" placeholder="Kg" />
+
+        <br><br>
+      </div>
+      <div id="divInput">
+
+        <p class="textoInputs">Preço de venda de cada frango:</p>
+        <input type="number" id="input_precoMedioFrango" placeholder="R$" />
+
+        <br><br>
+      </div>
+      <div id="divInput">
+        <p class="textoInputs">Custos de produção dos frangos:</p>
+        <input type="number" id="input_despesaMedioFrango" placeholder="R$" />
+
+        <br><br>
+      </div>
+      <div id="divInput">
+        <p class="textoInputs">Quantidade de mortalidade por temperatura:</p>
+        <input type="number" name="" id="input_mortalidadeFrango" placeholder="Mortalidade" />
+
+        <br><br>
+      </div>
+
+      <button onclick="calcularDepesas()">Calcular Despesas</button>
+      <br>
+    </div>
+
+
+    <!-- Div que mostra o resultado crítico -->
+    <div id="divResultado2"></div>
+
   </div>
 
 </body>
@@ -35,7 +70,8 @@
 </html>
 <script>
   function calcularDepesas() {
-    div_resultado.innerHTML = ``;
+
+
     var qtdFrango = Number(input_qtdFrango.value);
     var pesoMedioFrango = Number(input_kgMedioFrango.value);
     var precoMedioFrango = Number(input_precoMedioFrango.value);
@@ -76,6 +112,20 @@
       alert(`Por favor insira valores validos`);
 
     } else {
+      divResultado1.innerHTML = ``;
+      divResultado2.innerHTML = ``;
+
+      var div1 = document.getElementById("divResultado1");
+      var div2 = document.getElementById("divResultado2");
+
+      div1.style.display = "flex";
+      div2.style.display = "flex";
+
+      setTimeout(() => {
+        div1.style.opacity = "1";
+        div2.style.opacity = "1";
+      }, 10);
+
       if (lucro == 0) {
 
         porcentagem = 0
@@ -98,17 +148,24 @@
 
       }
 
-      div_resultado.innerHTML = `
-        <br>
+      divResultado1.innerHTML = `
+        <div class="tituloCard">
+          <h3>Resultados</h3>
+        </div>
         A sua produção conta com <span style="color: blue;"><b>${qtdFrango.toFixed(0)}</b></span> cabeças de frango, com cada frango pesando em média ${pesoMedioFrango}Kg. O peso total é de: <span style="color: blue;"><b>${kiloTotal.toFixed(2)}Kg.</b></span><br>
         O faturamento bruto é de: <span style="color: green;"> <b>R$${precoBruto.toFixed(2)}</b></span><br>
         Os custos totais de produção somam: <span style="color: red;"> <b>R$${despesaTotal.toFixed(2)}</b></span><br>
         ${mensagem} <span style="color: ${cor};"><b>R$${lucro.toFixed(2)}</b></span><br><br><br>
         
         Com a taxa de mortalidade de <span style="color: blue;"><b>${totalMortalidade.toFixed(0)}</b></span> frangos. São perdidos <span style="color: blue;"><b>${kiloMortalidade.toFixed(2)}Kg.</b></span><br>
-        A perda total registrada é: <span style="color: red;"><b>R$${perdaTotal.toFixed(2)}</b></span>, que equivale a <span style="color: blue;"><b>${porcentagem.toFixed(0)}%</b></span> do valor <span style="color: green;"><b>R$${lucro.toFixed(2)}</b></span><br><br>
+        A perda total registrada é: <span style="color: red;"><b>R$${perdaTotal.toFixed(2)}</b></span>Equivalente a <span style="color: blue;"><b>${porcentagem.toFixed(0)}%</b></span> do valor <span style="color: green;"><b>R$${lucro.toFixed(2)}</b></span><br><br>
+        `
 
-        Situação atual: <span style="color: ${corMortalidade};"><b>${situacao}</b></span> você teve uma baixa de <span style="color: blue;"><b>${totalMortalidade}</b></span> frangos que respresenta <span style="color: red;"><b>R$${porcentagemMorte.toFixed(2)}%</b></span> do total de <span style="color: blue;"><b>${qtdFrango} frangos</b></span>
+      divResultado2.innerHTML = `
+        <div class="tituloCard">
+          <h3>Situação</h3>
+        </div>
+        <span style="color: ${corMortalidade};"><b>${situacao}</b></span> você teve uma baixa de <span style="color: blue;"><b>${totalMortalidade}</b></span> frangos que respresenta <span style="color: red;"><b>R$${porcentagemMorte.toFixed(2)}%</b></span> do total de <span style="color: blue;"><b>${qtdFrango} frangos</b></span>
         <br>
         Situações:<br>
         <span style="color: green;"><b>ACEITAVEL</b></span> - Abaixo de 5% de perdas.<br>
