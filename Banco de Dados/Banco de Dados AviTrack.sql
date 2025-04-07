@@ -85,7 +85,7 @@ VALUES
 ('Ricardo Henrique Gomes', 'Supervisor', 'ricardo_gomes@luizegiovanni.com.br', 'sup91011', 3),
 ('Fernanda Beatriz Lima', 'Supervisor', 'fernanda_lima@joaolucas.com.br', 'sup1213', 4),
 ('Thiago Rafael Souza', 'Supervisor', 'thiago_souza@juliagustavo.com.br', 'sup1415', 5);
-Drop dataas
+
 -- Atualizando os representantes para terem um supervisor
 UPDATE funcionario_empresa SET fkSupervisor = 21 WHERE id = 1;
 UPDATE funcionario_empresa SET fkSupervisor = 22 WHERE id = 3;

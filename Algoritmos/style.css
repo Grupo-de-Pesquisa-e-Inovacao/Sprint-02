@@ -1,143 +1,180 @@
 body {
+    margin: 0;
+    font-family: 'Inter';
     display: flex;
     justify-content: center;
     align-items: center;
 
-    margin: 0;
-    font-family: 'Inter', sans-serif;
     flex-direction: column;
-    background-color: #232946;
-    color: #333;
+    background-color: var(--azul);
+    color: #fff;
 }
 
-.divContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-top: 100px;
-    height: 100%;
+:root {
+    --azul: #232946;
+    --amarelo: #ffd803;
+}
+
+
+
+
+
+/* Header */
+.header {
+    background-color: #000;
+    border-bottom: 3px solid var(--azul);
     width: 100%;
 }
 
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 120px;
+}
+
+.titulo {
+    color: var(--amarelo);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    color: var(--amarelo);
+    list-style: none;
+    width: 300px;
+}
+
+.navbar a {
+    color: var(--amarelo);
+    text-decoration: none;
+}
+
+.agora {
+    font-weight: bolder;
+}
+
+
+
+
+
+/* Div Container */
+.divContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+    height: fit-content;
+    width: 100%;
+}
+
+/* Div Conteudo */
 .divConteudo {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
-    width: 500px;
-    background-color: #bae8e8;
+    height: fit-content;
+    background-color: #fff;
     border: 2px solid #272343;
     border-radius: 10px;
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 90%;
+    padding: 20px;
+    height: 300px;
 }
 
-h1, h2 {
-    color: #55423d;
-}
 
-/* Resultados */
-#divResultado1 {
-    position: relative;
-    display: none;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 550px;
-    width: 400px;
-    background-color: #eaddcf;
-    color: #272343;
-    border-radius: 10px;
-    margin-left: 20px;
-    padding-top: 50px;
-}
-
-/* Situação */
-#divResultado2 {
-    position: relative;
-    display: none;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 550px;
-    width: 400px;
-    background-color: #eaddcf;
-    color: #272343;
-    border-radius: 10px;
-    margin-right: 20px;
-    padding-top: 50px;
-}
-.tituloCard {
-    position: absolute;
-    justify-content: baseline;
-    align-self: baseline;
+.divContainer input {
     display: flex;
-    top: 10px;
-    left: 10px;
-    margin: 0;
-    color: #272343;
+    flex-direction: row;
+    margin: 10px;
 }
 
-
-.textoInputs {
-    margin-bottom: 5px;
-    color: #2d334a;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.divInput {
-    margin-bottom: 20px;
-}
-
-input { 
+/* Estilização dos Inputs */
+input {
     height: 30px;
     width: 200px;
     text-align: center;
     border-radius: 5px;
     border: 1px transparent;
-    border-bottom: 1px solid #000;
+    border-bottom: 2px solid #000;
     transition: transform 0.2s ease;
     will-change: transform;
     backface-visibility: hidden;
     background-color: #e3f6f5;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
 input:hover {
     transform: scale(1.05);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
+}
 
-input[type=number]::-webkit-inner-spin-button { 
+input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    
+
 }
-input[type=number] { 
-   -moz-appearance: textfield;
-   appearance: textfield;
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 1 250px;
+    margin: 10px;
+}
+
+.inputGroup input {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #e6f2f2;
+    width: 200px;
+}
+
+
+
+/* Texto dos inputs */
+p {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #272343;
+    font-size: 15px;
+
+}
+
+
+
+/* Posição do Botão */
+.divContainer button {
+    display: auto;
+    flex-direction: auto;
+    justify-content: center;
+    align-self: center;
+}
+
+/* Estilização do Botão */
 button {
     color: #272343;
-    height: 40px;
-    width: 150px;
+    height: 60px;
+    width: 200px;
     border-radius: 30px;
     border: 2px solid #2d334a;
     background-color: #ffd803;
     transition: transform 0.2s ease;
     will-change: transform;
     backface-visibility: hidden;
+    margin: 30px;
 }
 
 button:hover {
@@ -145,4 +182,35 @@ button:hover {
     background-color: #e3f6f5;
     color: #2d334a;
     border: 2px solid #2d334a;
+}
+
+
+
+
+
+/* Resultados */
+.divResultados {
+    display: flex;
+    flex-direction: row;
+}
+
+#divMensagem1, #divMensagem2 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #fff;
+    color: #000;
+    width: 500px;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+
+#divTitulo {
+    display: flex;
+    flex-direction: center;
+    justify-content: center;
+    align-self: center;
+    color: #232946;
+    
 }
