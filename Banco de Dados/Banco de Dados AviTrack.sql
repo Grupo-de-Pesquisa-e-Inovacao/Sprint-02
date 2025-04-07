@@ -9,6 +9,7 @@ CREATE DATABASE avitrack;
 
 USE avitrack;
 
+-- Criando a tabela 'funcionario_empresa'
 CREATE TABLE funcionario_empresa (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
@@ -21,9 +22,11 @@ CREATE TABLE funcionario_empresa (
 		REFERENCES funcionario_empresa(id)
 );
 
+-- Adicionando a foreign key 'fkEmpresa' que relaciona as tabelas 'empresa_cliente' e 'funcionario_empresa'
 ALTER TABLE funcionario_empresa ADD CONSTRAINT fkFuncionarioEmpresa FOREIGN KEY (fkEmpresa)
 		REFERENCES empresa_cliente(id);
 
+-- Criando a tabela 'empresa_cliente'
 CREATE TABLE empresa_cliente (
 		id INT PRIMARY KEY AUTO_INCREMENT,
         nome VARCHAR(50) NOT NULL,
@@ -42,6 +45,7 @@ CREATE TABLE empresa_cliente (
 		
 );
 
+-- Criando a tabela 'sensor'
 CREATE TABLE sensor (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     modelo VARCHAR(45),
@@ -52,7 +56,8 @@ CREATE TABLE sensor (
     CONSTRAINT fkEmpresaSensor FOREIGN KEY (fkEmpSensor)
 		REFERENCES empresa_cliente(id)
 );
- 
+
+-- Criando tabela 'dado_sensor' que é dependente da tabela 'sensor'
 CREATE TABLE dado_sensor (
         id INT AUTO_INCREMENT,
         fkSensor INT,
@@ -64,6 +69,7 @@ CREATE TABLE dado_sensor (
 			REFERENCES sensor(id)
 );
 
+-- Inserindo funcionários das empresas parceiras
 INSERT INTO funcionario_empresa (nome, cargo, email, senha)
 VALUES
 ('João Manoel Anderson da Mata', 'Representante', 'joao_manoel_damata@mindesign.com.br', 'ojBKH2BhOg'),
@@ -77,7 +83,7 @@ VALUES
 ('Priscila Ayla Jennifer Monteiro', 'Representante', 'priscila_ayla_monteiro@htmail.com', 'eCzBPJgwEE'),
 ('Edson Felipe Porto', 'Monitor', 'edson-porto76@ynail.com.br', 'h8Q5QCATC0');
 
--- Inserindo supervisores (um para cada empresa)
+-- Inserindo supervisores (um para cada representante de cada empresa)
 INSERT INTO funcionario_empresa (nome, cargo, email, senha, fkEmpresa)
 VALUES
 ('Carlos Eduardo Almeida', 'Supervisor', 'carlos_almeida@larissacarolina.com.br', 'sup1234', 1),
@@ -87,11 +93,11 @@ VALUES
 ('Thiago Rafael Souza', 'Supervisor', 'thiago_souza@juliagustavo.com.br', 'sup1415', 5);
 
 -- Atualizando os representantes para terem um supervisor
-UPDATE funcionario_empresa SET fkSupervisor = 21 WHERE id = 1;
-UPDATE funcionario_empresa SET fkSupervisor = 22 WHERE id = 3;
-UPDATE funcionario_empresa SET fkSupervisor = 23 WHERE id = 5;
-UPDATE funcionario_empresa SET fkSupervisor = 24 WHERE id = 7;
-UPDATE funcionario_empresa SET fkSupervisor = 25 WHERE id = 9;
+UPDATE funcionario_empresa SET fkSupervisor = 16 WHERE fkEmpresa = 1 and cargo = 'Representante';
+UPDATE funcionario_empresa SET fkSupervisor = 17 WHERE fkEmpresa = 2 and cargo = 'Representante';
+UPDATE funcionario_empresa SET fkSupervisor = 18 WHERE fkEmpresa = 3 and cargo = 'Representante';
+UPDATE funcionario_empresa SET fkSupervisor = 19 WHERE fkEmpresa = 4 and cargo = 'Representante';
+UPDATE funcionario_empresa SET fkSupervisor = 20 WHERE fkEmpresa = 5 and cargo = 'Representante';
 
 -- Inserindo empresas com fkRepresentante (vamos supor que os IDs dos representantes são 1, 3, 5, 7, 9)
 INSERT INTO empresa_cliente (nome, cnpj, email, telefone, cep, uf, cidade, logradouro, numero, fkRepresentante)
@@ -149,11 +155,11 @@ SELECT
 			ON f.fkSupervisor = s.id;
  
 SELECT 
+		es.nome as 'Empresa',
         ds.temperatura as 'Temperatura',  
         date_format(ds.dt_hora, '%d/%m/%Y - %h:%m') as 'Data & Hora', 
         ds.setor as 'Setor do Sensor',
-        CONCAT(s.modelo, ' - ', s.num_serie) as Sensor,
-        es.nome as 'Empresa'
+        CONCAT(s.modelo, ' - ', s.num_serie) as Sensor
         FROM dado_sensor as ds JOIN sensor as s
 			ON fkSensor = s.id
 		JOIN empresa_cliente as es
@@ -165,4 +171,4 @@ SELECT
         f.cargo as Cargo,
         e.nome as Empresa
 		FROM funcionario_empresa as f JOIN empresa_cliente as e
-			ON e.id = f.fkEmpresa;
+			ON e.id = f.fkEmpresa ORDER BY e.nome DESC;
