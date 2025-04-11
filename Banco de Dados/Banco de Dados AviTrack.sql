@@ -10,16 +10,12 @@ CREATE DATABASE avitrack;
 USE avitrack;
 
 -- Criando a tabela 'funcionario_empresa'
-CREATE TABLE funcionario_empresa (
+CREATE TABLE representante (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
 	cargo VARCHAR(30) NOT NULL,
-    email VARCHAR(70) NOT NULL UNIQUE,
-    senha VARCHAR(30) NOT NULL,
-    fkEmpresa INT,
-	fkSupervisor INT,
-    CONSTRAINT fkFuncSupervisor FOREIGN KEY (fkSupervisor) 
-		REFERENCES funcionario_empresa(id)
+    email_comercial VARCHAR(70) NOT NULL UNIQUE,
+    senha VARCHAR(30) NOT NULL
 );
 
 -- Criando a tabela 'empresa_cliente'
@@ -28,20 +24,31 @@ CREATE TABLE empresa_cliente (
         nome VARCHAR(50) NOT NULL,
 		cnpj VARCHAR(18) NOT NULL UNIQUE,
         email VARCHAR(50) NOT NULL UNIQUE,
-        telefone CHAR(11) NOT NULL,
+        telefone_comercial CHAR(11) NOT NULL,
         cep VARCHAR(15) NOT NULL,
         uf CHAR(2) NOT NULL,
         cidade VARCHAR(40) NOT NULL,
         logradouro VARCHAR(100) NOT NULL,
         numero VARCHAR(6) NOT NULL,
         complemento VARCHAR(50),
-        fkRepresentante INT, 
-        CONSTRAINT fkEmpresaRepresentante FOREIGN KEY (fkRepresentante)
-			REFERENCES funcionario_empresa(id)
+        fk_representante INT, 
+        CONSTRAINT fkEmpresaRepresentante FOREIGN KEY (fk_representante)
+			REFERENCES representante(id)
+);
+        
+CREATE TABLE setor (
+	id INT,
+    nome VARCHAR(45) NOT NULL,
+    area FLOAT NOT NULL,
+    fkEmpresa INT NOT NULL,
+    CONSTRAINT fk_setor_empresa FOREIGN KEY (fkEmpresa)
+		REFERENCES empresa_cliente(id),
+	CONSTRAINT pk_composta PRIMARY KEY (id, fkEmpresa)
 );
 
-ALTER TABLE funcionario_empresa ADD CONSTRAINT fkFuncionarioEmpresa FOREIGN KEY (fkEmpresa)
-		REFERENCES empresa_cliente(id);
+CREATE TABLE usuario(
+	
+);
 
 -- Criando a tabela 'sensor'
 CREATE TABLE sensor (
@@ -50,9 +57,12 @@ CREATE TABLE sensor (
     tipo_leitura VARCHAR(45),
     num_serie VARCHAR(30),
 	responsavel VARCHAR(50) NOT NULL,
-    fkEmpSensor INT,
-    CONSTRAINT fkEmpresaSensor FOREIGN KEY (fkEmpSensor)
-		REFERENCES empresa_cliente(id)
+    fk_setor INT,
+    CONSTRAINT fk_setor_empresa FOREIGN KEY (fk_setor)
+		REFERENCES setor(id),
+	fk_empresa_setor INT,
+    CONSTRAINT fk_empresa_sensor FOREIGN KEY (fk_empresa_setor)
+		REFERENCES setor(fk_empresa)
 );
 
 -- Criando tabela 'dado_sensor' que é dependente da tabela 'sensor'
@@ -61,7 +71,6 @@ CREATE TABLE dado_sensor (
         fkSensor INT,
         temperatura DECIMAL(4,2) NOT NULL,
         dt_hora DATETIME NOT NULL,
-        setor VARCHAR(100) NOT NULL,
         CONSTRAINT pkComposta PRIMARY KEY (id, fkSensor),
         CONSTRAINT fkDadoSensor FOREIGN KEY (fkSensor)
 			REFERENCES sensor(id)
