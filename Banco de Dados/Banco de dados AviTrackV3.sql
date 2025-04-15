@@ -11,57 +11,38 @@ CREATE TABLE pessoa_juridica (
     cnpj CHAR(14) NOT NULL
 );
 
-CREATE TABLE endereco (
-	id INT AUTO_INCREMENT,
+CREATE TABLE login(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	usuario VARCHAR(45),
+    senha VARCHAR(30),
+    fk_pessoa_juridica INT,
+    CONSTRAINT fkPessoaJuridica FOREIGN KEY (fk_pessoa_juridica)
+		REFERENCES pessoa_juridica(id)
+);
+
+CREATE TABLE aviario (
+	id INT PRIMARY KEY,
+    nome VARCHAR(45) NOT NULL,
+    qtd_frangos INT NOT NULL,
+    qtd_frango_mortos INT,
     cep CHAR(15) NOT NULL,
     logradouro VARCHAR(100) NOT NULL,
     numero VARCHAR(6) NOT NULL,
     cidade VARCHAR(45) NOT NULL,
     uf CHAR(2) NOT NULL,
-    complemento VARCHAR(50),
-    fk_pj INT,
-    CONSTRAINT fkPessoaJuridica FOREIGN KEY (fk_pj) 
-		REFERENCES pessoa_juridica(id),
-    CONSTRAINT pkCompostaEndereco PRIMARY KEY (id, fk_pj)
-);
-
-CREATE TABLE aviario (
-	id INT,
-    nome VARCHAR(45),
-    capacidade_maxima INT,
-    capacidade_atual INT,
-    fk_endereco INT,
-    CONSTRAINT fkEndereco FOREIGN KEY (fk_endereco) 
-		REFERENCES endereco(id),
-    fk_endereco_pj INT,
-    CONSTRAINT fkEnderecoPJ FOREIGN KEY (fk_endereco_pj) 
-		REFERENCES endereco(fk_pj),
-	CONSTRAINT pkCompostaAviario PRIMARY KEY (id, fk_endereco, fk_endereco_pj)
-);
-
-CREATE TABLE franganada (
-	id INT PRIMARY KEY,
-    qtd_frangos INT,
-    qtd_frango_mortos INT
+    complemento_endereco VARCHAR(50),
+    fk_login INT,
+    CONSTRAINT fkLogin FOREIGN KEY (fk_login)
+		REFERENCES login(id)
 );
 
 CREATE TABLE setor(
 	id INT,
 	nome VARCHAR(45),
-    area FLOAT,
     fk_aviario INT,
     CONSTRAINT fkAviario FOREIGN KEY (fk_aviario)
 		REFERENCES aviario(id),
-	fk_aviario_endereco INT,
-    CONSTRAINT fkAviarioEndereco FOREIGN KEY (fk_aviario_endereco)
-		REFERENCES aviario(fk_endereco),
-    fk_aviario_endereco_pj INT,
-    CONSTRAINT fkAviarioEnderecoPJ FOREIGN KEY (fk_aviario_endereco_pj)
-		REFERENCES aviario(fk_endereco_pj),
-    fk_franganada INT,
-    CONSTRAINT fkFranganada FOREIGN KEY (fk_franganada)
-		REFERENCES franganada(id),
-	CONSTRAINT pkCompostaSetor PRIMARY KEY (id, fk_aviario, fk_aviario_endereco, fk_aviario_endereco_pj, fk_franganada)
+	CONSTRAINT pkComposta PRIMARY KEY (id, fk_aviario)
 );
 
 CREATE TABLE sensor (
@@ -74,16 +55,7 @@ CREATE TABLE sensor (
 		REFERENCES setor(id),
 	fk_setor_aviario INT,
     CONSTRAINT fkSetorAviario FOREIGN KEY (fk_setor_aviario)
-		REFERENCES setor(fk_aviario),
-	fk_setor_aviario_endereco INT,
-    CONSTRAINT fkSetorAviarioEndereco FOREIGN KEY (fk_setor_aviario_endereco)
-		REFERENCES setor(fk_aviario_endereco),
-	fk_setor_aviario_endereco_pj INT,
-    CONSTRAINT fkSetorAviarioEnderecoPJ FOREIGN KEY (fk_setor_aviario_endereco_pj)
-		REFERENCES setor(fk_aviario_endereco_pj),
-	fk_setor_franganada INT,
-    CONSTRAINT fkSetorFranganada FOREIGN KEY (fk_setor_franganada)
-		REFERENCES setor(fk_franganada)
+		REFERENCES setor(fk_aviario)
 );
 
 CREATE TABLE dado_sensor (
