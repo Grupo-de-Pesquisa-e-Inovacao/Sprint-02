@@ -1,100 +1,268 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+
 body {
-    font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
-    background-color: #23232e;
+    font-family: 'Poppins', serif;
     display: flex;
-    justify-content: center;
+
     align-items: center;
     height: 100vh;
     margin: 0;
     padding: 0;
+    color: #fff;
 }
 
-.login-container {
+:root {
+    --offWhite: #dbf4ad;
+    --amarelo: #fff45c;
+    --vermelho: #821313;
+    --cinzaEscuro: #080808;
+    --preto: #0000;
+    --azulEscuro: #2d334a;
+}
+
+#banner {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
+    background-image: url(https://consigazempresas.com.br/wp-content/uploads/2024/05/grande-quantidade-de-aves-em-interior-de-uma-estufa.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-.login-box {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba (0, 0, 0, 0.1);
-    text-align: center;
-    width: 350px;
+#banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
 }
 
-h2 {
-    margin-bottom: 20px;
-    color: #333;
-}
 
-.input-group {
+
+/* Div de informações flutuantes */
+#card_info {
+    position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 30px;
-    padding: 10px;
-    background-color: #f9f9f9;
+    text-align: center;
+    background-color: var(--amarelo);
+    width: 550px;
+    height: 350px;
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    border-radius: 20px;
+    border: 4px solid #000;
 }
 
-.input-group i {
-    margin-left: 10px;
-    margin-right: 5px;
-    color: #888
-}
-
-.input-group input {
-    border: none;
-    outline: none;
-    padding: 10px;
-    background-color: transparent;
-    font-size: 16px;
-    width: 100%;
-}
-
-.login-btn {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 30px;
-    background: linear-gradient(90deg, #6a5acd, #8a2be2);
-    color: #fff;
+#card_info p,
+#card_info span {
+    color: #000;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 0;
+    font-size: 17px;
     font-weight: bold;
-    cursor: pointer;
-    transition: .3s ease-in;
 }
 
-.login-btn:hover {
-    background: linear-gradient(90deg, #8a2be2, #6a5acd);
+#card_info h2 {
+    color: #000;
+    margin-bottom: 10px;
 }
 
-.singup-link {
+.botao_irLogin a {
+    color: var(--amarelo);
+    background-color: #000;
+    padding: 5px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.botao_irLogin {
     margin: 20px;
     font-size: 14px;
+    color: #000;
 }
 
-.singup-link a {
-    color: #6a5acd;
+.botao_irLogin a {
+    color: var(--amarelo);
     font-weight: bold;
     text-decoration: none;
 }
 
-.singup-link a:hover,
-.options a:hover {
-    color: #8a2be2;
-
+.botao_irLogin a:hover {
+    color: #fff;
 }
 
-input[type=number]::-webkit-inner-spin-button {
+
+
+
+/* Div pai de todos os conteúdos */
+.div_containerCadastro {
+    padding: 20px;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: var(--cinzaEscuro);
+    border-left: 1px solid var(--amarelo);
+}
+
+.div_boxCadastro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cinzaEscuro);
+    padding: 30px;
+    border-radius: 10px;
+    width: 700px;
+    text-align: center;
+}
+
+/* Título da Página */
+h2 {
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+
+
+
+
+/* Input's */
+input {
+    position: absolute;
+    width: 300px;
+    font-size: 17px;
+    outline: none;
+    padding: 0 30px;
+    line-height: 80px;
+    border-radius: 50px;
+    border: 2px solid #888;
+    background: transparent;
+    transition: 0.1s ease;
+    z-index: 1111;
+}
+
+.div_campoCadastro {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    margin-bottom: 50px;
+}
+
+.textoInput {
+    position: absolute;
+    left: 15px;
+    white-space: nowrap;
+    font-size: 17px;
+    font-weight: bold;
+    color: #888;
+    line-height: 80px;
+    background-color: var(--cinzaEscuro);
+    border-radius: 20px;
+    transition: 0.2s ease;
+}
+
+/* Espaçamento do campo de senha e das informações necessárias para inserir uma senha válida */
+#div_campoSenha {
+    margin-bottom: 40px;
+}
+
+/* Validação de Senha */
+#div_validarSenha {
+    width: 350px;
+    color: #888;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+/* Ao clicar, as bordas dos input's ficarão amarelas */
+input:focus,
+input:valid {
+    color: var(--amarelo);
+    border: 2px solid var(--amarelo);
+}
+
+/* Ao inserir um texto valido, a borda permanece amarela */
+input:focus+.textoInput,
+input:valid+.textoInput {
+    color: var(--amarelo);
+    height: 30px;
+    line-height: 30px;
+    padding: 0 12px;
+    transform: translate(0, -16px) scale(0.88);
+    z-index: 1111;
+}
+
+/* Para remover as setas do input do tipo número */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-
+    margin: 0;
 }
 
-input[type=number] {
-    -moz-appearance: textfield;
-    appearance: textfield;
+/* Espaçamento do icone pro texto da input */
+i {
+    padding-right: 10px;
+}
+
+/* Botão para relevar senha */
+#i_buttonEyeConfSenha,
+#i_buttonEyeSenha {
+    background-color: transparent;
+    color: #888;
+    position: absolute;
+    left: 365px;
+    font-size: 20px;
+    border: transparent;
+    line-height: 80px;
+}
+
+
+
+/* Botão de "Cadastrar" */
+#botao_login {
+    width: 250px;
+    height: 80px;
+    padding: 15px;
+    border: none;
+    border-radius: 30px;
+    background: var(--amarelo);
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+    color: #000;
+    font-size: 17px;
+    transition: 0.1s ease;
+    border: 0px;
+}
+
+#botao_login:hover {
+    transition: 0.1s ease;
+    border: solid 3px #000;
+    animation: pulse 1.5s infinite;
+}
+
+/* Animação que faz com que o botão de cadastrar fique pulsando, para chamar atenção */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(126, 126, 126, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
 }

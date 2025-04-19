@@ -12,40 +12,97 @@
 </head>
 
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <h2>Formulário de Login</h2>
 
-            <form action="SimuladorFinanceiro.html">
+    <div class="div_containerLogin">
 
+        <div class="div_boxLogin">
+
+            <h2>Bem-Vindo!</h2>
+            <h5>Monitore a temperatura do seu aviário com precisão e aumente sua produtividade!</h5>
+
+            <form>
                 <!-- Login -->
-                <div class="input-group">
-                    <i class="fas fa-user"></i>
-                    <input type="text" id="login" placeholder="Email" required>
+                <div class="div_campoLogin" id="div_campoEmailLogin">
+                    <input type="text" id="i_emailLogin" required autocomplete="off">
+                    <div class="textoInput">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <span>Email ou CNPJ</span>
+                    </div>
                 </div>
 
                 <!-- Senha -->
-                <div class="input-group">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" id="password" placeholder="Senha" required>
+                <div class="div_campoLogin" id="div_campoSenhaLogin">
+                    <button type="button" id="i_buttonEyeSenha" onclick="exibirSenha()" tabindex="-1">
+                        <div id="iconeEyes">
+                            <i class="fa fa-eye-slash" aria-hidden=" true" style="font-size: 18px;"></i>
+                        </div>
+                    </button>
+                    <input type="password" id="i_senhaLogin" required autocomplete="off">
+                    <div class="textoInput">
+                        <i class="fas fa-lock"></i>
+                        <span>Senha</span>
+                    </div>
                 </div>
 
+                <button class="botao_Login" onclick="validar()">Entrar</button>
 
-                <div class="options">
-                    <label for=""><input type="checkbox"> Lembrar-me</label>
-                    <a href="#">Esqueceu a sua senha?</a>
-                </div>
-            
-                <button type="submit" class="login-btn" id="submit" onclick="logar();">Entrar</button>
-            
             </form>
-
-            <div class="singup-link">
-                Não é membro? <a href="cadastro.html">Cadastre-se agora</a>
-            </div>
-
         </div>
     </div>
+
+    <div id="banner">
+        <div id="card_info">
+            <h2>AviTrack</h2>
+            <p>Cadastre-se agora e tenha acesso aos dashboards interativos, simuladores financeiros e dados essenciais
+                para o controle de temperatura em aviários.
+                Garanta o bem-estar das aves, aumente sua produtividade e tome decisões baseadas em dados reais!
+            </p>
+            <div class="botao_irCadastro">
+                <span>Ainda não possuí uma conta? <a href="Cadastro.html" tabindex="-1">Criar conta</a></span>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
+
+<script>
+    function exibirSenha() {
+        // Fazendo a inversão do tipo do input ao clicar no icone de revelar senha
+        // Ao clicar no icone, inverte o tipo da input de password para text
+        if (i_senhaLogin.type == "password") {
+            i_senhaLogin.type = "text";
+            i_buttonEyeSenha.innerHTML = `<i class="fa fa-eye" aria-hidden="true" style="color: #fff45c"></i>`;
+        } else { // Ao clicar novamente, inverte de text para password
+            i_senhaLogin.type = "password";
+            i_buttonEyeSenha.innerHTML = `<i class="fa fa-eye-slash" aria-hidden=" true"style="font-size: 18px;"></i>`;
+        }
+    }
+
+    function validar() {
+        // Variáveis
+        var email = i_emailLogin.value;
+        var senha = i_senhaLogin.value;
+
+        // Exemplificando com a senha "Fernanda123#" e email "fernanda@g.com"
+        if (email != '' && senha != '') {
+            if (senha == 'Fernanda123#' && email == 'fernanda@g.com') {
+                alert(`Bem-vindo de volta! \n \nEstavamos esperando você`);
+                window.location.href = "SimuladorFinanceiro.html"
+
+            } else if (senha != `Fernanda123` && email == `fernanda@g.com`) {
+                alert(`A senha está incorreta, tente novamente!`)
+
+            } else if (senha == `Fernanda123` && email != `fernanda@g.com`) {
+                alert(`O email está incorreto, tente novamente!`)
+
+            } else if (senha != `Fernanda123` && email != `fernanda@g.com`) {
+                alert(`A senha e o email estão incorretos, tente novamente!`)
+
+            }
+        } else {
+            alert('Preencha todos os campos!')
+        }
+    }
+</script>

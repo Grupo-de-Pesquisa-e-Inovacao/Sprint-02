@@ -1,112 +1,265 @@
-/* Estilo Global */
+@import url(https://fonts.googleapis.com/css?family=Poppins);
 
 body {
-    font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
-    background-color: #23232e;
+    font-family: 'Poppins', serif;
     display: flex;
-    justify-content: center;
+
     align-items: center;
     height: 100vh;
     margin: 0;
     padding: 0;
+    color: #fff;
 }
 
-/* Estilo do Login */
+:root {
+    --offWhite: #dbf4ad;
+    --amarelo: #fff45c;
+    --vermelho: #821313;
+    --cinzaEscuro: #080808;
+    --preto: #0000;
+    --azulEscuro: #2d334a;
+}
 
-.login-container {
+#banner {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 400px;
-    padding: 20px;
-    box-sizing: border-box;
+    background-image: url(https://blog.zanottirefrigeracao.com.br/wp-content/uploads/2018/07/aviario-scaled.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-.login-box {
-    background-color: #fff;
+#banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+
+
+/* Div de informações flutuantes */
+#card_info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: var(--amarelo);
+    width: 550px;
+    height: 350px;
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    border-radius: 20px;
+    border: 4px solid #000;
+}
+
+#card_info p,
+#card_info span {
+    color: #000;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 0;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#card_info h2 {
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.botao_irCadastro a {
+    color: var(--amarelo);
+    background-color: #000;
+    padding: 5px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.botao_irCadastro {
+    margin: 20px;
+    font-size: 14px;
+    color: #000;
+}
+
+.botao_irCadastro a {
+    color: var(--amarelo);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.botao_irCadastro a:hover {
+    color: #fff;
+}
+
+
+
+#div_logo{
+    background-image: url(https://s3-alpha-sig.figma.com/img/9198/94e8/9f9bb65ed1e06cdda0b56ff4837aea25?Expires=1745798400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ZGD-cezk~UGegKKoY8gM-SQd8HHDLx07Br0pBEy8Zmr7zjr3xzypOAGJw292QBdAvW78E7fElPYQ-cYjndOI71fk0urWN3nOpELd0snsG5YB2yCOV3waMd6NByUROXN~RCuC~pbLa5RGz5unRwDG1O1P72xJimO2gpo22fOVkV-EMKIi~b6MABM1MI~-Ft2qs2JH6zz-XDJldY46MN4Kq4PdDWUznvb80xS7qRyaQOYukGdndtDUsBJ8uAI~2cuKuWoXNgtXK4o1yOXRJL1niZtVei9iv832fXsIHfkQKd-N9Zw~tIT~xZeagyGeltmXPFDfXgkmfHrfzVkYX0LlBA__);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 200px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Div pai de todos os conteúdos */
+.div_containerLogin {
+    display: flex;
+    padding: 20px;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: var(--cinzaEscuro);
+    border-right: 1px solid var(--amarelo);
+}
+
+.div_boxLogin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cinzaEscuro);
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba (0, 0, 0, 0.1);
+    width: 700px;
     text-align: center;
-    max-width: 100%;
 }
 
+/* Título da Página */
 h2 {
-    margin-bottom: 20px;
-    color: #333;
+    color: #fff;
 }
 
-.input-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 30px;
-    padding: 10px;
-    background-color: #f9f9f9;
+h5 {
+    margin-top: 0;
 }
 
-.input-group i {
-    margin-left: 10px;
-    margin-right: 5px;
-    color: #888
-}
 
-.input-group input {
-    border: none;
+
+
+
+/* Input's */
+input {
+    position: absolute;
+    width: 300px;
+    font-size: 17px;
     outline: none;
-    padding: 10px;
+    padding: 0 30px;
+    line-height: 80px;
+    border-radius: 50px;
+    border: 2px solid #888;
+    background: transparent;
+    transition: 0.1s ease;
+    z-index: 1111;
+}
+
+.div_campoLogin {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    margin-bottom: 50px;
+}
+
+.textoInput {
+    position: absolute;
+    left: -30px;
+    white-space: nowrap;
+    font-size: 17px;
+    font-weight: bold;
+    color: #888;
+    line-height: 80px;
+    background-color: var(--cinzaEscuro);
+    border-radius: 20px;
+    transition: 0.2s ease;
+}
+
+/* Ao clicar, as bordas dos input's ficarão amarelas */
+input:focus,
+input:valid {
+    color: var(--amarelo);
+    border: 2px solid var(--amarelo);
+}
+
+/* Ao inserir um texto valido, a borda permanece amarela */
+input:focus+.textoInput,
+input:valid+.textoInput {
+    color: var(--amarelo);
+    height: 30px;
+    line-height: 30px;
+    padding: 0 12px;
+    transform: translate(0, -16px) scale(0.88);
+    z-index: 1111;
+}
+
+
+/* Espaçamento do icone pro texto da input */
+i {
+    padding-right: 10px;
+}
+
+/* Botão para relevar senha */
+#i_buttonEyeSenha {
     background-color: transparent;
-    font-size: 16px;
-    width: 100%;
+    color: #888;
+    position: absolute;
+    left: 320px;
+    font-size: 20px;
+    border: transparent;
+    line-height: 80px;
 }
 
-.options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-.options label {
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    gap: 5px
-}
-.options a {
-    color: #6A5ACD;
-    text-decoration: none;
-    font-size: 13px;
-}
 
-.login-btn {
-    width: 100%;
+
+/* Botão de "Entrar" */
+.botao_Login {
+    width: 250px;
+    height: 80px;
     padding: 15px;
     border: none;
     border-radius: 30px;
-    background: linear-gradient(90deg, #6a5acd, #8a2be2);
-    color: #fff;
-    font-weight: bold;
+    background: var(--amarelo);
     cursor: pointer;
-    transition: .3s ease-in;
-}
-
-.login-btn:hover {
-    background: linear-gradient(90deg, #8a2be2, #6a5acd);
-}
-
-.singup-link {
-    margin-top: 20px;
-    font-size: 14px;
-}
-
-.singup-link a {
-    color: #6a5acd;
     font-weight: bold;
-    text-decoration: none;
+    transition: 0.3s ease;
+    color: #000;
+    font-size: 17px;
+    transition: 0.1s ease;
+    border: 0px;
 }
 
-.singup-link a:hover, .options a:hover {
-    color: #8a2be2;
+.botao_Login:hover {
+    transition: 0.1s ease;
+    border: solid 3px #000;
+    animation: pulse 1.5s infinite;
+}
 
+/* Animação que faz com que o botão de cadastrar fique pulsando, para chamar atenção */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(126, 126, 126, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
 }

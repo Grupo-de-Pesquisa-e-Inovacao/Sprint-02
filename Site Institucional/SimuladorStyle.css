@@ -21,13 +21,11 @@ body {
 }
 
 :root {
-    /* Cores do Site Institucional */
     --offWhite: #dbf4ad;
     --amarelo: #fff45c;
     --vermelho: #821313;
     --cinzaEscuro: #080808;
     --preto: #0000;
-
     --azulEscuro: #2d334a;
 }
 
