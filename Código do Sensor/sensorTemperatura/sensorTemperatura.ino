@@ -24,6 +24,6 @@ void loop() {
   // Exibe a temperatura no gráfico
   Serial.println(temperaturaCelsius - 10);
 
-  // Espera 2 segundo para proxima execução
-  delay(2000);
+  // Espera 5 segundos para proxima execução
+  delay(5000);
 }

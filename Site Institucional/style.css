@@ -19,9 +19,15 @@ body {
 
 
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: black;
+  z-index: 1000;
 }
 
+  
 .navbar {
   display: flex;
   align-items: center;
@@ -70,7 +76,9 @@ body {
 
 .conteudoinicial {
   padding: 50px;
+  padding-top: 140px; 
 }
+
 
 .bloco-conteudo {
   display: flex;
@@ -132,6 +140,7 @@ body {
   width: 40px;
   height: 40px;
   margin-bottom: 10px;
+  margin-left: 20px;
 }
 
 .titulobeneficios p {
@@ -139,12 +148,14 @@ body {
   font-weight: bold;
   font-size: 14px;
   margin: 5px 0;
+  margin-left: 20px;
 }
 
 .textobeneficios p {
   color: var(--amarelo);
-  font-size: 13px;
+  font-size: 15px;
   margin: 0;
+  margin-left: 20px;
 }
 
 span {
@@ -160,7 +171,7 @@ span {
 }
 
 .excelenciatitulo h4 {
-  margin-left: 20px;
+  margin-left: 40px;
 }
 
 .excelencia-sensores-div {
@@ -172,7 +183,7 @@ span {
   color: var(--branco);
   margin-bottom: 40px;
   font-weight: bold;
-  margin-left: 20px;
+  margin-left: 30px;
   text-align: left;
 }
 
@@ -189,20 +200,20 @@ span {
   flex: 1;
   min-width: 250px;
   color: var(--branco);
-  font-size: 15px;
+  font-size: 22px;
   line-height: 1.6;
 }
 
 .lado-esquerdo img {
-  width: 40px;
+  width: 70px;
   margin-bottom: 15px;
 }
 
 .lado-direito {
-  flex: 2;
+  flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
 }
 
 .card {
@@ -221,7 +232,7 @@ span {
 
 .card h4 {
   margin-bottom: 10px;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -242,7 +253,7 @@ span {
   display: flex;
   justify-content: start;
   width: 100%;
-  background-color: #000;
+  background-color: var(--preto);
   padding: 20px 20px;
   text-align: left;
 }
@@ -250,27 +261,31 @@ span {
 .entenda h2 {
   color: var(--branco);
   margin-bottom: 20px;
-  margin-left: 20px;
+  margin-left: 30px;
 }
 
 .entenda h4 {
   color: var(--branco);
-  margin-left: 20px;
+  margin-left: 30px;
 
 }
 
 .entenda p {
   color: var(--amarelo);
-  font-size: 13px;
+  font-size: 15px;
   max-width: 600px;
-  margin-left: 20px;
+  margin-left: 30px;
 }
-
 
 .section-content {
-  max-width: 1000px;
+  background-image: url("Imagens/background.png"), linear-gradient(to top left, #000 35%, #141414 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
   margin-left: 50px;
+  padding: 40px 20px;
+  background-position: right -30px bottom;
 }
+
 
 .step {
   margin-bottom: 60px;
@@ -294,7 +309,91 @@ span {
 }
 
 .step p {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--branco);
   max-width: 700px;
+}
+
+.zero-margin {
+  margin: 0;
+}
+
+.footer {
+  background-color: #000;
+  color: var(--amarelo);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px 10px;
+  border-top: 1px solid var(--amarelo);
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 30px;
+  max-width: 200px;
+  margin-bottom: 10px;
+}
+
+.logoGalinha {
+  width: 80px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+}
+
+.footer-credit {
+  font-size: 12px;
+  margin-left: 30px;
+  color: var(--amarelo);
+}
+
+.footer-links {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-col {
+  min-width: 140px;
+}
+
+.footer-col strong {
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--amarelo);
+}
+
+.footer-col p {
+  font-size: 13px;
+  color: var(--branco);
+  margin: 4px 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.footer-col p:hover {
+  color: var(--amarelo);
+  text-decoration: underline;
+}
+
+.social-icons {
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+}
+
+.social-icons img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.social-icons img:hover {
+  transform: scale(1.2);
 }
