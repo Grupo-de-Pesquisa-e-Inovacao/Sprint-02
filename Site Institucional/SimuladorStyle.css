@@ -1,70 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --azul: #32b9cd;
+  --amarelo: #fff45c;
+  --branco: #ffffff;
+  --preto: #000000;
+  --cinza: #141414;
+  --cinzaescuro: #080808;
+}
+
 body {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Inter';
-    flex-direction: column;
-    background-color: var(--cinzaEscuro);
-    color: #fff;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+  background-color: var(--cinza);
+  overflow-x: hidden;
 }
-
-:root {
-    font-family: Inter, sans-serif;
-    font-feature-settings: 'liga' 1, 'calt' 1;
-}
-
-@supports (font-variation-settings: normal) {
-    :root {
-        font-family: InterVariable, sans-serif;
-    }
-}
-
-:root {
-    --offWhite: #dbf4ad;
-    --amarelo: #fff45c;
-    --vermelho: #821313;
-    --cinzaEscuro: #080808;
-    --preto: #0000;
-    --azulEscuro: #2d334a;
-}
-
-
 
 
 /* Header */
 .header {
-    background-color: var(--preto);
-    border-bottom: 3px solid var(--amarelo);
-    width: 100%;
-}
-
-.header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 120px;
-}
-
-.titulo {
-    color: var(--amarelo);
+  background-color: black;
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    color: var(--amarelo);
-    list-style: none;
-    width: 300px;
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
 }
 
-.navbar a {
-    color: var(--amarelo);
-    text-decoration: none;
+
+.logo img {
+  height: 70px;
 }
 
-.agora {
-    font-weight: bolder;
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.center-links {
+  flex: 1;
+  justify-content: center;
+  display: flex;
+}
+
+.right-links {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-list li a {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  color: var(--amarelo);
+  text-decoration: none;
+  transition: 0.3s;
+  background-color: transparent;
+}
+
+.nav-list li a:hover {
+  background-color: var(--amarelo);
+  color: black;
+  border: 2px solid var(--amarelo);
 }
 
 
@@ -89,7 +91,7 @@ body {
     justify-content: space-between;
     align-items: center;
     height: fit-content;
-    background-color: var(--cinzaEscuro);
+    background-color: var(--cinza);
     border: 2px solid var(--amarelo);
     border-radius: 20px;
     margin-left: 50px;
@@ -139,7 +141,7 @@ input {
     background-color: var(--cinzaEscuro);
     font-weight: bold;
     margin-bottom: 20px;
-    color: var(--offWhite);
+    color: var(--amarelo);
 }
 
 input:hover {
@@ -206,8 +208,7 @@ button:hover {
 .divResultados {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-
+    justify-content: center;
 }
 
 .divMensagem {

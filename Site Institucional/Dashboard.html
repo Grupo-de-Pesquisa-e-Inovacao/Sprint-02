@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <div id="divContainerInformacoes">
+        <div id="divTituloPagina">Dashboard</div>
+        <div id="divPerfil">
+            <i class="fa-solid fa-user"></i>
+            <p>Olá, Usuário!</p>
+        </div>
+        <div class="divNavbar" id="op1">
+            <p class="textoOpcao">Notificações</p>
+        </div>
+        <div class="divNavbar">
+            <p class="textoOpcao">Histórico</p>
+        </div>
+        <div class="divNavbar">
+            <p class="textoOpcao">Recomendações</p>
+        </div>
+        <div class="divNavbar">
+            <p class="textoOpcao">Conta</p>
+        </div>
+        <div class="divNavbar">
+            <p class="textoOpcao">Configurações</p>
+        </div>
+    </div>
+
+    <div id="divContainerGraficos">
+
+        <!-- Gráfico de linha que mede a temperatura semanal do Aviário -->
+        <div class="divGraficos">
+            <canvas id="canvasTemperaturaSemanal"></canvas>
+            <br>
+            <p>Sua temperatura média na semana foi de <span>22,43°C</span></p>
+        </div>
+
+        <!-- Gráfico de Doughnut que exibe a porcentagem de boa temperatura e má temperatura mensal -->
+        <div class="divGraficos" id="percentualTemperatura">
+            <canvas id="canvasPercentualTemperatura"></canvas>
+        </div>
+
+        <!-- Exibição da temperatura atual do Aviário -->
+        <div class="divGraficos" id="temperaturaAtual">
+            <h2>Temperatura Atual</h2>
+            <span>22°C</span>
+            <p>A temperatura ideal para o melhor conforto de seus frangos de corte está entre 20°C e 30°C</p>
+        </div>
+
+        <!-- Gráfico de Barras que exibe a renda mensal ao longo de 1 ano -->
+        <div class="divGraficos" id="rendaMensal">
+            <canvas id="canvasRendaBarras"></canvas>
+        </div>
+
+        <div class="divGraficos" id="mortalidade">
+            <canvas id="canvasMortalidade"></canvas>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    // Gráfico de Linha: Temperatura Semanal
+    const labelsLinha = ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'];
+
+    const dataLinha = {
+        labels: labelsLinha,
+        datasets: [
+            {
+                label: 'Temperatura',
+                data: [10, 29, 28, 15, 22, 23, 30],
+                borderColor: '#fff45c',
+                backgroundColor: '#222',
+                yAxisID: 'y',
+                tension: 0.4,
+            }
+        ]
+    };
+
+    const configLinha = {
+        type: 'line',
+        data: dataLinha,
+        options: {
+            responsive: true,
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
+            stacked: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Temperatura Semanal',
+                    color: 'White',
+                    font: {
+                        size: 24
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Dias da Semana'
+                    }
+                },
+                y: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    min: 0,
+                    max: 40,
+                    ticks: {
+                        stepSize: 10
+                    },
+                    title: {
+                        display: true,
+                        text: 'Graus Celsius'
+                    }
+                },
+            }
+        },
+    };
+
+    const GraficoLinha = new Chart(
+        document.getElementById('canvasTemperaturaSemanal'),
+        configLinha
+    );
+
+
+
+
+    // Gráfico de Doughnut: Porcentagem de tempo que a temperatura ficou ideal
+    const labelPizza = ['Tempo Dentro do Ideal', 'Tempo Fora do Ideal'];
+
+    const dataPizza = {
+        labels: [
+            'Tempo Dentro do Ideal',
+            'Tempo Fora do Ideal'
+        ],
+        datasets: [{
+            label: 'Lucro',
+            data: [75, 25],
+            backgroundColor: ['green', '#821313'],
+            borderColor: 'transparent',
+            hoverOffset: 20
+        }]
+    };
+
+    const configPizza = {
+        type: 'doughnut',
+        data: dataPizza,
+        options: {
+            cutout: 50,
+            responsive: true,
+            animation: {
+                animateScale: true
+            },
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Relatório Mensal de Temperatura Ideal',
+                    color: 'white',
+                    font: {
+                        size: 24,
+                    }
+                }
+            },
+        }
+    };
+
+    const GraficoPizza = new Chart(
+        document.getElementById('canvasPercentualTemperatura'),
+        configPizza
+    );
+
+
+
+
+    // Gráfico Barras: Renda Mensal
+    const labelsBarra = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+    const dataBarra = {
+        labels: labelsBarra,
+        datasets: [
+            {
+                label: 'Renda',
+                data: [22082, 24544, 27901, 23324, 20123, 18082, 16098, 29257, 23643, 24982, 25912, 17523],
+                borderColor: 'white',
+                backgroundColor: '#fff45c',
+                yAxisID: 'y',
+                tension: 0
+            }
+        ]
+    };
+    const configBarra = {
+        type: 'bar',
+        data: dataBarra,
+        options: {
+            responsive: true,
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Renda Mensal',
+                    color: 'white',
+                    font: {
+                        size: 24
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Meses do ano',
+                        font: {
+                            size: 15
+                        }
+                    }
+                },
+                y: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    min: 0,
+                    max: 30000,
+                    ticks: {
+                        stepSize: 0
+                    },
+                    title: {
+                        display: true,
+                        text: 'Renda',
+                        font: {
+                            size: 15
+                        }
+                    }
+                }
+            },
+            animation: {
+                onComplete: () => {
+                    const chart = GraficoBarra;
+                    const ctx = chart.ctx;
+                    ctx.font = 'bold 12px Arial';
+                    ctx.fillStyle = '#fff45c';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'bottom';
+
+                    chart.data.datasets.forEach((dataset, i) => {
+                        const meta = chart.getDatasetMeta(i);
+                        meta.data.forEach((bar, index) => {
+                            const value = dataset.data[index];
+                            ctx.fillText('R$ ' + value.toFixed(2), bar.x, bar.y - 5);
+                        });
+                    });
+                }
+            }
+        }
+    };
+    const GraficoBarra = new Chart(
+        document.getElementById('canvasRendaBarras'),
+        configBarra
+    );
+
+</script>
