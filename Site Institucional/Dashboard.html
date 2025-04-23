@@ -17,25 +17,31 @@
 
     <div id="divContainerInformacoes">
         <div id="divTituloPagina">Dashboard</div>
-        <div id="divPerfil">
+        <div class="divNavbar">
             <i class="fa-solid fa-user"></i>
-            <p>bomfrango_admin</p>
+            <p class="textoOpcao">Perfil</p>
         </div>
-        <div class="divNavbar" id="op1">
+        <div class="divNavbar">
+            <i class="fa-solid fa-bell"></i>
             <p class="textoOpcao">Notificações</p>
         </div>
         <div class="divNavbar">
+            <i class="fa-solid fa-clock-rotate-left"></i>
             <p class="textoOpcao">Histórico</p>
         </div>
         <div class="divNavbar">
+            <i class="fa-solid fa-thumbs-up"></i>
             <p class="textoOpcao">Recomendações</p>
         </div>
         <div class="divNavbar">
-            <p class="textoOpcao">Conta</p>
-        </div>
-        <div class="divNavbar">
+            <i class="fa-solid fa-gear"></i>
             <p class="textoOpcao">Configurações</p>
         </div>
+        <div class="divNavbar">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <p class="textoOpcao">Sair</p>
+        </div>
+
     </div>
 
 
@@ -47,21 +53,25 @@
         <div class="kpi" id="card1">
             <h2>Temperatura Atual do Aviário</h2>
             <span>22°C</span>
+            <a>O ideal é estar entre 21°C e 26°C</a>
         </div>
         <!-- Exibição da temperatura atual do Aviário -->
         <div class="kpi" id="card2">
             <h2>Temperatura Média do Dia do Aviário</h2>
             <span>24°C</span>
+            <a>O ideal é variar entre 21°C e 26°C</a>
         </div>
         <!-- Exibição da temperatura atual do Aviário -->
         <div class="kpi" id="card3">
-            <h2>Tempo Fora da Temperatura Ideal</h2>
+            <h2>Tempo Diário Fora da Temperatura Ideal</h2>
             <span>2 Horas</span>
+            <a>O ideal é estar abaixo de 1 hora diária<portal></portal></a>
         </div>
         <!-- Exibição da temperatura atual do Aviário -->
         <div class="kpi" id="card4">
             <h2>Taxa de Mortalidade Semanal</h2>
             <span>5.2%</span>
+            <a>O ideal é estar abaixo de 3% </a>
         </div>
 
         <!-- Gráfico de linha que mede a temperatura semanal do Aviário -->
@@ -80,7 +90,8 @@
         <!-- Gráfico de Doughnut que exibe a porcentagem de boa temperatura e má temperatura mensal -->
         <div class="divGraficos" id="percentualTemperatura">
             <canvas id="canvasPercentualTemperatura"></canvas>
-            <p>Dentro dos últimos 30 dias, a temperatura esteve no intervalo ideal durante <span style="color: orange;">75%</span> do tempo.</p>
+            <p>Dentro dos últimos 30 dias, a temperatura esteve no intervalo ideal durante <span
+                    style="color: orange;">75%</span> do tempo.</p>
         </div>
 
 
@@ -124,6 +135,16 @@
             },
             stacked: false,
             plugins: {
+                legend: {
+                    labels: {
+                        color: 'white',
+                        font: {
+                            size: 14,
+                            family: 'Arial'
+                        },
+                        boxWidth: 20
+                    }
+                },
                 title: {
                     display: true,
                     text: 'Temperatura Semanal',
@@ -193,7 +214,7 @@
             {
                 label: 'Mortalidade',
                 data: [10, 29, 28, 15, 22, 33, 22],
-                borderColor: '#fff45c',
+                borderColor: '#ff2a2a',
                 backgroundColor: '#222',
                 yAxisID: 'y',
                 tension: 0.4,
@@ -206,17 +227,22 @@
         data: dataLinhaMortalidade,
         options: {
             responsive: true,
-            legend: {
-                labels: {
-                    color: 'black' // Cor da legenda (opcional)
-                }
-            },
             interaction: {
                 mode: 'index',
                 intersect: false,
             },
             stacked: false,
             plugins: {
+                legend: {
+                    labels: {
+                        color: 'white',
+                        font: {
+                            size: 14,
+                            family: 'Arial'
+                        },
+                        boxWidth: 20
+                    }
+                },
                 title: {
                     display: true,
                     text: 'Mortalidade Semanal',
@@ -286,8 +312,8 @@
         datasets: [{
             label: 'Lucro',
             data: [75, 25],
-            backgroundColor: ['#00ff00', '#ff2400'],
-            borderColor: ['#006400', 'red'],
+            backgroundColor: ['#35ff35', '#ff2a2a'],
+            borderColor: ['#000', '#000'],
             hoverOffset: 20
         }]
     };
@@ -306,6 +332,16 @@
                 intersect: false,
             },
             plugins: {
+                legend: {
+                    labels: {
+                        color: 'white',
+                        font: {
+                            size: 14,
+                            family: 'Arial'
+                        },
+                        boxWidth: 20
+                    }
+                },
                 title: {
                     display: true,
                     text: 'Relatório Mensal de Temperatura Ideal',

@@ -11,7 +11,6 @@ body {
     font-weight: bold;
 }
 
-
 :root {
     --offWhite: #dbf4ad;
     --amarelo: #fff45c;
@@ -42,10 +41,11 @@ body {
 
 #divTituloPagina {
     font-size: 40px;
+    height: 100px;
     font-weight: bold;
     color: transparent;
     -webkit-text-stroke-width: 0.1px;
-    -webkit-text-stroke-color: var(--amarelo);   
+    -webkit-text-stroke-color: var(--amarelo);
     padding-top: 20px;
     border-bottom: 0.5px solid #555;
 }
@@ -53,30 +53,27 @@ body {
 .divNavbar {
     display: flex;
     justify-content: left;
-    width: 70%;
-    height: 80px;
-    font-size: 20px;
-    /* border-bottom: 0.5px solid #555; */
-}
-
-#divPerfil {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
-    text-align: left;
-    width: 80%;
-    height: 100px;
+    width: 90%;
+    height: 70px;
     font-size: 20px;
-    /* border-bottom: 0.5px solid #555; */
+    padding-left: 10px;
+    border-bottom: 0.5px solid #555;
+    transition: 0.2s;
 }
 
-#divPerfil i {
+.divNavbar:hover {
+    font-size: 21px;
+    background-color: #222;
+    cursor: pointer;
+    color: var(--amarelo);
+
+}
+
+i {
     font-size: 20px;
     padding: 10px;
-    }
-
-
+}
 
 
 
@@ -89,7 +86,7 @@ body {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly;
-    background-color: var(--cinza);   
+    background-color: var(--cinza);
     height: fit-content;
     width: 100%;
     padding-left: 15%;
@@ -121,12 +118,14 @@ body {
     width: 70% !important;
     height: 60% !important;
 }
+
 #percentualTemperatura {
     width: 35%;
     height: 660px;
     display: flex;
     justify-content: center;
 }
+
 #percentualTemperatura p {
     padding: 50px;
     font-size: 18px;
@@ -147,6 +146,7 @@ body {
     width: 80% !important;
     height: 100% !important;
 }
+
 .divGraficos #canvasMortalidade {
     width: 80% !important;
     height: 100% !important;
@@ -156,7 +156,10 @@ body {
 
 
 /* Dados das KPI´s */
-#card1, #card2, #card3, #card4 {
+#card1,
+#card2,
+#card3,
+#card4 {
     width: 21.1%;
     height: 180px;
     text-align: center;
@@ -174,19 +177,39 @@ body {
     border: 0.5px solid var(--amarelo);
 }
 
+/* Dados exibidos nos cards */
 #card1 span {
-    font-size: 50px;
-    color: green;
+    font-size: 30px;
+    color: #35ff35;
 }
 #card2 span {
-    font-size: 50px;
-    color: green;
+    font-size: 30px;
+    color: #35ff35;
 }
 #card3 span {
-    font-size: 50px;
-    color: red;
+    font-size: 30px;
+    color: #ff2a2a;
 }
 #card4 span {
-    font-size: 50px;
-    color: red;
+    font-size: 30px;
+    color: #ff2a2a;
+}
+
+/* Títulos dos Cards */
+#card1 h2 {
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+#card2 h2 {
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+#card3 h2 {
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+#card4 h2 {
+    margin-top: 5px;
+    margin-bottom: 0px;
 }
