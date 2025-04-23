@@ -44,10 +44,13 @@
                     </div>
                 </div>
 
-                <button class="botao_Login" onclick="validar()">Entrar</button>
-
+                
             </form>
+            
+            <button class="botao_Login" onclick="validar()">Entrar</button>
+        
         </div>
+
     </div>
 
     <div id="banner">
@@ -89,7 +92,7 @@
         if (email != '' && senha != '') {
             if (senha == 'Fernanda123#' && email == 'fernanda@g.com') {
                 alert(`Bem-vindo de volta! \n \nEstavamos esperando você`);
-                window.location.href = "SimuladorFinanceiro.html"
+                window.location.href = "indexCadastrado.html"
 
             } else if (senha != `Fernanda123` && email == `fernanda@g.com`) {
                 alert(`A senha está incorreta, tente novamente!`)

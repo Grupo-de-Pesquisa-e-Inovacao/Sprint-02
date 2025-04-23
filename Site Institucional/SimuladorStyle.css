@@ -13,7 +13,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Poppins";
-  background-color: var(--cinza);
+  background-color: var(--cinzaescuro);
   overflow-x: hidden;
 }
 
@@ -21,6 +21,7 @@ body {
 /* Header */
 .header {
   background-color: black;
+  border-bottom: solid 0.5px var(--amarelo);
 }
 
 .navbar {
@@ -48,9 +49,21 @@ body {
   display: flex;
 }
 
-.right-links {
+.imgnav-perfil img {
+  width: 40px;  
   display: flex;
   justify-content: flex-end;
+  padding: 0;
+}
+
+.imgnav-exit {
+  width: 0;
+  height: 30px;  
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 0;
+  padding: 20;
+
 }
 
 .nav-list li a {
@@ -107,14 +120,13 @@ body {
     flex-direction: center;
     justify-content: center;
     align-self: center;
-    color: var(--offWhite);
-    text-decoration: underline;
+    color: var(--amarelo);
 }
 
 .divConteudo2 {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     height: fit-content;
     margin-left: 50px;
@@ -128,41 +140,90 @@ body {
 }
 
 /* Estilização dos Inputs */
+/* Input's */
 input {
-    height: 40px;
-    width: 300px;
-    text-align: center;
-    border-radius: 5px;
-    border: 1px transparent;
-    border-bottom: 2px solid var(--amarelo);
-    transition: transform 0.2s ease;
-    will-change: transform;
-    backface-visibility: hidden;
-    background-color: var(--cinzaEscuro);
+    position: absolute;
+    width: 250px;
+    font-size: 17px;
+    outline: none;
+    padding: 0 30px;
+    line-height: 80px;
+    border-radius: 50px;
+    border: 2px solid #888;
+    background: transparent;
+    transition: 0.1s ease;
+    z-index: 1111;
+}
+
+.div_campos {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    margin-bottom: 50px;
+}
+
+.textoInput {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 17px;
     font-weight: bold;
+    color: #888;
+    line-height: 80px;
+    background-color: var(--cinzaEscuro);
+    border-radius: 20px;
+    transition: 0.2s ease;
+}
+
+/* Espaçamento do campo de senha e das informações necessárias para inserir uma senha válida */
+#div_campoSenha {
+    margin-bottom: 40px;
+}
+
+/* Validação de Senha */
+#div_validarSenha {
+    width: 350px;
+    color: #888;
+    font-size: 12px;
     margin-bottom: 20px;
+}
+
+/* Ao clicar, as bordas dos input's ficarão amarelas */
+input:focus,
+input:valid {
     color: var(--amarelo);
+    border: 2px solid var(--amarelo);
 }
 
-input:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+/* Ao inserir um texto valido, a borda permanece amarela */
+input:focus+.textoInput,
+input:valid+.textoInput {
+    color: var(--amarelo);
+    height: 30px;
+    line-height: 30px;
+    padding: 0 12px;
+    transform: translate(0, -16px) scale(0.88);
+    z-index: 1111;
 }
 
-input[type=number]::-webkit-inner-spin-button {
+/* Para remover as setas do input do tipo número */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
     -webkit-appearance: none;
+    margin: 0;
 }
 
-input[type=number] {
-    -moz-appearance: textfield;
-    appearance: textfield;
+/* Espaçamento do icone pro texto da input */
+i {
+    padding-right: 10px;
 }
+
 
 /* Texto dos inputs */
 p {
     font-weight: bold;
     margin-bottom: 5px;
-    color: var(--offWhite);
+    color: var(--amarelo);
     font-size: 20px;
 }
 
@@ -179,17 +240,18 @@ p {
 
 /* Estilização do Botão */
 button {
-    color: var(--azulEscuro);
+    color: var(--amarelo);
     height: 60px;
     width: 200px;
     border-radius: 30px;
-    border: 2px solid var(--azulEscuro);
+    border: 2px solid var(--amarelo);
     background-color: var(--offWhite);
     transition: transform 0.5 s ease;
     will-change: transform;
     backface-visibility: hidden;
     margin: 30px;
     font-weight: bold;
+    font-size: 15px;
 }
 
 /* Animação do Botão */
@@ -209,14 +271,15 @@ button:hover {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-top: 50px;
 }
 
 .divMensagem {
     display: flex;
     flex-direction: column;
     text-align: center;
-    background-color: var(--cinzaEscuroe);
-    color: var(--offWhite);
+    background-color: var(--cinza);
+    color: var(--amarelo);
     width: 500px;
     margin: 20px;
     border-radius: 20px;
@@ -229,10 +292,10 @@ button:hover {
     padding-left: 50px;
     padding-right: 50px;
     font-size: 17px;
-    color: var(--offWhite);
+    color: var(--branco);
 }
 
 .divTituloResultados {
-    text-decoration: underline;
-    color: var(--offWhite);
+    color: var(--amarelo);
+    margin-bottom: 10px;
 }

@@ -178,7 +178,7 @@ input {
 
 .textoInput {
     position: absolute;
-    left: -30px;
+    right: 70px;
     white-space: nowrap;
     font-size: 17px;
     font-weight: bold;
@@ -218,7 +218,7 @@ i {
     background-color: transparent;
     color: #888;
     position: absolute;
-    left: 320px;
+    left: 200px;
     font-size: 20px;
     border: transparent;
     line-height: 80px;
