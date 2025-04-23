@@ -58,7 +58,7 @@ CREATE TABLE sensor (
 		REFERENCES setor(fk_aviario)
 );
 
-CREATE TABLE dado_sensor (
+CREATE TABLE medicao (
 	id INT AUTO_INCREMENT,
     temperatura DECIMAL(4,2),
     dt_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -123,7 +123,7 @@ VALUES
 ('LM35', 'Temperatura', 'LM35-C2-008', 2, 3),
 ('LM35', 'Temperatura', 'LM35-C3-009', 3, 3);
 
-INSERT INTO dado_sensor (temperatura, dt_hora, fk_sensor) VALUES
+INSERT INTO medicao (temperatura, dt_hora, fk_sensor) VALUES
 (28.5, '2025-04-22 08:00:00', 1),
 (29.1, '2025-04-22 08:05:00', 2),
 (27.8, '2025-04-22 08:10:00', 3),
@@ -133,7 +133,6 @@ INSERT INTO dado_sensor (temperatura, dt_hora, fk_sensor) VALUES
 (26.7, '2025-04-22 08:30:00', 7),
 (27.2, '2025-04-22 08:35:00', 8),
 (28.0, '2025-04-22 08:40:00', 9);
-
 
 SELECT * FROM pessoa_juridica;
 
@@ -145,7 +144,7 @@ SELECT * FROM setor;
 
 SELECT * FROM sensor;
 
-SELECT * FROM dado_sensor;
+SELECT * FROM medicao;
 
 SELECT a.nome AS Aviário,
 	a.qtd_frangos AS 'Quantidade de Frangos',
@@ -176,14 +175,14 @@ SELECT sensor.modelo as Modelo,
 	JOIN aviario
 		ON sensor.fk_setor_aviario = aviario.id;
         
-SELECT ds.temperatura as Temperatura,
-	date_format(ds.dt_hora, '%d-%m-%y / %h:%m') as 'Data & Hora',
+SELECT m.temperatura as Temperatura,
+	date_format(m.dt_hora, '%d-%m-%y / %h:%m') as 'Data & Hora',
     sensor.modelo as 'Modelo do sensor',
     sensor.num_serie as 'Número de série',
     CONCAT(aviario.nome, ' - ', setor.nome) as 'Aviário & Setor'
-    FROM dado_sensor as ds
+    FROM medicao as m
     JOIN sensor
-		ON ds.fk_sensor = sensor.id
+		ON m.fk_sensor = sensor.id
 	JOIN setor
 		ON sensor.fk_setor = setor.id
 	JOIN aviario
