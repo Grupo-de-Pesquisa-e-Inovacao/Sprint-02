@@ -25,5 +25,5 @@ void loop() {
   Serial.println(temperaturaCelsius - 10);
 
   // Espera 5 segundos para proxima execução
-  delay(5000);
+  delay(3000);
 }
