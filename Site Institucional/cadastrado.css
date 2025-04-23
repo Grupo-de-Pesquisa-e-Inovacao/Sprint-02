@@ -1,0 +1,411 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --azul: #32b9cd;
+  --amarelo: #fff45c;
+  --branco: #ffffff;
+  --preto: #000000;
+  --cinza: #141414;
+  --cinzaescuro: #080808;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+  background-color: var(--cinza);
+  overflow-x: hidden;
+}
+
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  z-index: 1000;
+}
+
+  
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+}
+
+
+.logo img {
+  height: 70px;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.center-links {
+  flex: 1;
+  justify-content: center;
+  display: flex;
+}
+
+.imgnav-perfil img {
+    width: 40px;  
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+}
+  
+.imgnav-exit {
+    width: 0;
+    height: 30px;  
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 0;
+    padding: 20;
+
+  }  
+
+.nav-list li a {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  color: var(--amarelo);
+  text-decoration: none;
+  transition: 0.3s;
+  background-color: transparent;
+}
+
+.nav-list li a:hover {
+  background-color: var(--amarelo);
+  color: black;
+  border: 2px solid var(--amarelo);
+}
+
+.conteudoinicial {
+  padding: 50px;
+  padding-top: 140px; 
+}
+
+
+.bloco-conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.titulo {
+  color: var(--branco);
+  font-size: 40px;
+  margin: 0 0 10px 0;
+}
+
+.subtitulo {
+  color: var(--amarelo);
+  font-size: 15px;
+  margin: 0;
+}
+
+.galinha {
+  position: absolute;
+  top: 97px;
+  right: 0;
+  z-index: 1;
+}
+
+.galinha img {
+  height: 370px;
+  display: block;
+}
+
+.linha-sobreposta {
+  position: absolute;
+  top: calc(170px + 300px - 4px);
+  left: 0;
+  width: 100vw;
+  height: 2px;
+  background-color: var(--cinzaescuro);
+  z-index: 2;
+}
+
+.beneficios-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
+}
+
+.beneficio {
+  flex: 1 1 250px;
+  max-width: 300px;
+  padding: 15px;
+  text-align: left;
+}
+
+.beneficiosimg img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.titulobeneficios p {
+  color: var(--branco);
+  font-weight: bold;
+  font-size: 14px;
+  margin: 5px 0;
+  margin-left: 20px;
+}
+
+.textobeneficios p {
+  color: var(--amarelo);
+  font-size: 15px;
+  margin: 0;
+  margin-left: 20px;
+}
+
+span {
+  color: var(--amarelo);
+}
+
+.excelenciatitulo {
+  color: var(--branco);
+  background-color: var(--preto);
+  width: 100%;
+  padding: 20px;
+
+}
+
+.excelenciatitulo h4 {
+  margin-left: 40px;
+}
+
+.excelencia-sensores-div {
+  padding: 30px 30px;
+  color: var(--branco);
+}
+
+.titulo-sessao {
+  color: var(--branco);
+  margin-bottom: 40px;
+  font-weight: bold;
+  margin-left: 30px;
+  text-align: left;
+}
+
+.excelencia-sensores {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.lado-esquerdo {
+  flex: 1;
+  min-width: 250px;
+  color: var(--branco);
+  font-size: 22px;
+  line-height: 1.6;
+}
+
+.lado-esquerdo img {
+  width: 70px;
+  margin-bottom: 15px;
+}
+
+.lado-direito {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background-color: var(--amarelo);
+  padding: 20px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  color: #000;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+.card h4 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card p {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.entenda-funcionamento {
+  background-color: var(--preto);
+}
+
+.conteudo-entenda {
+  background-color: var(--preto);
+}
+
+.entenda {
+  display: flex;
+  justify-content: start;
+  width: 100%;
+  background-color: var(--preto);
+  padding: 20px 20px;
+  text-align: left;
+}
+
+.entenda h2 {
+  color: var(--branco);
+  margin-bottom: 20px;
+  margin-left: 30px;
+}
+
+.entenda h4 {
+  color: var(--branco);
+  margin-left: 30px;
+
+}
+
+.entenda p {
+  color: var(--amarelo);
+  font-size: 15px;
+  max-width: 600px;
+  margin-left: 30px;
+}
+
+.section-content {
+  background-image: url("Imagens/background.png"), linear-gradient(to top left, #000 35%, #141414 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-left: 50px;
+  padding: 40px 20px;
+  background-position: right -30px bottom;
+}
+
+
+.step {
+  margin-bottom: 60px;
+}
+
+.step h2::before {
+  content: none;
+}
+
+.seta {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.step h2 {
+  color: var(--branco);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: left;
+}
+
+.step p {
+  font-size: 15px;
+  color: var(--branco);
+  max-width: 700px;
+}
+
+.zero-margin {
+  margin: 0;
+}
+
+.footer {
+  background-color: #000;
+  color: var(--amarelo);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px 10px;
+  border-top: 1px solid var(--amarelo);
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 30px;
+  max-width: 200px;
+  margin-bottom: 10px;
+}
+
+.logoGalinha {
+  width: 80px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+}
+
+.footer-credit {
+  font-size: 12px;
+  margin-left: 30px;
+  color: var(--amarelo);
+}
+
+.footer-links {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-col {
+  min-width: 140px;
+}
+
+.footer-col strong {
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--amarelo);
+}
+
+.footer-col p {
+  font-size: 13px;
+  color: var(--branco);
+  margin: 4px 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.footer-col p:hover {
+  color: var(--amarelo);
+  text-decoration: underline;
+}
+
+.social-icons {
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+}
+
+.social-icons img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.social-icons img:hover {
+  transform: scale(1.2);
+}
