@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
 
     <title>Dashboard</title>
 </head>
@@ -315,6 +318,7 @@
     const configPizza = {
         type: 'doughnut',
         data: dataPizza,
+        plugins: [ChartDataLabels],
         options: {
             cutout: 100,
             responsive: true,
@@ -326,6 +330,20 @@
                 intersect: false,
             },
             plugins: {
+                datalabels: {
+                    display: 'inside', // coloca o valor dentro
+                    formatter: (value, context) => {
+                        const sum = context.dataset.data.reduce((a, b) => a + b, 0);
+                        const percentage = (value / sum * 100).toFixed(1) + '%';
+                        return percentage;
+                    }, //formatacao para porcentagem
+                    color: 'black',
+                    
+                    font: {
+                        size: 30,
+                        weight: 'bold'
+                    }
+                },
                 legend: {
                     labels: {
                         color: 'white',
