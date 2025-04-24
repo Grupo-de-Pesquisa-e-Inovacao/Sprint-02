@@ -58,7 +58,7 @@ CREATE TABLE sensor (
 		REFERENCES setor(fk_aviario)
 );
 
-CREATE TABLE medicao (
+CREATE TABLE medicao_temperatura (
 	id INT AUTO_INCREMENT,
     temperatura DECIMAL(4,2),
     dt_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -71,8 +71,8 @@ CREATE TABLE medicao (
 -- Inserindo em pessoa_juridica
 INSERT INTO pessoa_juridica (razao_social, email_comercial, senha, telefone_comercial, cnpj)
 VALUES 
-('Granja Bom Frango', 'contato@bomfrango.com.br', 'senha123', '11987654321', '12345678000199'),
-('Aviários Vale Verde', 'suporte@valeverde.com.br', 'vale2024', '1133445566', '98765432000188'),
+('Granja Bom Frango', 'contato@bomfrango.comt.br', 'senha123', '11987654321', '12345678000199'),
+('Aviários Vale Verde', 'suporte@valeverde.comt.br', 'vale2024', '1133445566', '98765432000188'),
 ('Frango Feliz LTDA', 'comercial@frangofeliz.com', 'feliz2025', '1199887766', '45612378000166');
 
 -- Inserindo em login (associado às pessoas jurídicas)
@@ -123,16 +123,10 @@ VALUES
 ('LM35', 'Temperatura', 'LM35-C2-008', 2, 3),
 ('LM35', 'Temperatura', 'LM35-C3-009', 3, 3);
 
-INSERT INTO medicao (temperatura, dt_hora, fk_sensor) VALUES
+INSERT INTO medicao_temperatura (temperatura, dt_hora, fk_sensor) VALUES
 (28.5, '2025-04-22 08:00:00', 1),
 (29.1, '2025-04-22 08:05:00', 2),
-(27.8, '2025-04-22 08:10:00', 3),
-(30.2, '2025-04-22 08:15:00', 4),
-(28.9, '2025-04-22 08:20:00', 5),
-(29.5, '2025-04-22 08:25:00', 6),
-(26.7, '2025-04-22 08:30:00', 7),
-(27.2, '2025-04-22 08:35:00', 8),
-(28.0, '2025-04-22 08:40:00', 9);
+(27.8, '2025-04-22 08:10:00', 3);
 
 SELECT * FROM pessoa_juridica;
 
@@ -144,7 +138,7 @@ SELECT * FROM setor;
 
 SELECT * FROM sensor;
 
-SELECT * FROM medicao;
+SELECT * FROM medicao_temperatura;
 
 SELECT a.nome AS Aviário,
 	a.qtd_frangos AS 'Quantidade de Frangos',
@@ -175,15 +169,20 @@ SELECT sensor.modelo as Modelo,
 	JOIN aviario
 		ON sensor.fk_setor_aviario = aviario.id;
         
-SELECT m.temperatura as Temperatura,
-	date_format(m.dt_hora, '%d-%m-%y / %h:%m') as 'Data & Hora',
+SELECT mt.temperatura as Temperatura,
+	date_format(mt.dt_hora, '%d/%m/%Y - %H:%i') as 'Data & Hora',
     sensor.modelo as 'Modelo do sensor',
     sensor.num_serie as 'Número de série',
-    CONCAT(aviario.nome, ' - ', setor.nome) as 'Aviário & Setor'
-    FROM medicao as m
+    CONCAT(aviario.nome, ' - ', setor.nome) as 'Aviário & Setor',
+    CASE
+		WHEN mt.temperatura < 19 THEN 'Abaixo do ideal'
+        WHEN mt.temperatura > 26 THEN 'Acima do ideal'
+        ELSE 'Temperatura ideal'
+	END as Situação
+    FROM medicao_temperatura as mt
     JOIN sensor
-		ON m.fk_sensor = sensor.id
+		ON mt.fk_sensor = sensor.id
 	JOIN setor
 		ON sensor.fk_setor = setor.id
 	JOIN aviario
-		ON setor.fk_aviario = aviario.id
+		ON setor.fk_aviario = aviario.id order by mt.dt_hora asc;
