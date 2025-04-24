@@ -17,30 +17,30 @@
 
     <div id="divContainerInformacoes">
         <div id="divTituloPagina">Dashboard</div>
-        <div class="divNavbar">
+        <a class="divNavbar" href="#">
             <i class="fa-solid fa-user"></i>
             <p class="textoOpcao">Perfil</p>
-        </div>
-        <div class="divNavbar">
+        </a>
+        <a class="divNavbar" href="#">
             <i class="fa-solid fa-bell"></i>
             <p class="textoOpcao">Notificações</p>
-        </div>
-        <div class="divNavbar">
+        </a>
+        <a class="divNavbar" href="#">
             <i class="fa-solid fa-clock-rotate-left"></i>
             <p class="textoOpcao">Histórico</p>
-        </div>
-        <div class="divNavbar">
+        </a>
+        <a class="divNavbar" href="#">
             <i class="fa-solid fa-thumbs-up"></i>
             <p class="textoOpcao">Recomendações</p>
-        </div>
-        <div class="divNavbar">
+        </a>
+        <a class="divNavbar" href="#">
             <i class="fa-solid fa-gear"></i>
             <p class="textoOpcao">Configurações</p>
-        </div>
-        <div class="divNavbar">
+        </a>
+        <a class="divNavbar" href="indexCadastrado.html">
             <i class="fa-solid fa-right-from-bracket"></i>
             <p class="textoOpcao">Sair</p>
-        </div>
+        </a>
 
     </div>
 
@@ -117,7 +117,7 @@
                 label: 'Temperatura',
                 data: [45, 37, 30, 25, 30, 20, 10],
                 borderColor: '#fff45c',
-                backgroundColor: '#222',
+                backgroundColor: '#fff',
                 yAxisID: 'y',
                 tension: 0.4,
             }
@@ -161,7 +161,6 @@
                         color: '#fff',
                         font: {
                             size: 10,
-                            weight: 'bold'
                         }
                     },
                     title: {
@@ -182,8 +181,7 @@
                     ticks: {
                         color: '#fff',
                         font: {
-                            size: 10,
-                            weight: 'bold'
+                            size: 15,
                         }
                     },
                     title: {
@@ -215,7 +213,7 @@
                 label: 'Mortalidade',
                 data: [10, 29, 28, 15, 22, 33, 22],
                 borderColor: '#ff2a2a',
-                backgroundColor: '#222',
+                backgroundColor: 'white',
                 yAxisID: 'y',
                 tension: 0.4,
             }
@@ -258,14 +256,12 @@
                         color: '#fff',
                         font: {
                             size: 10,
-                            weight: 'bold'
                         }
                     },
                     title: {
                         display: true,
                         text: 'Dias da Semana',
                         color: 'white',
-                        weight: 'bold'
                     },
                 },
                 y: {
@@ -277,15 +273,13 @@
                     ticks: {
                         color: '#fff',
                         font: {
-                            size: 10,
-                            weight: 'bold'
+                            size: 15,
                         }
                     },
                     title: {
                         display: true,
                         text: 'Graus Celsius',
-                        color: 'white',
-                        weight: 'bold'
+                        color: 'white'
                     }
                 },
             }
@@ -310,7 +304,7 @@
             'Tempo Fora do Ideal'
         ],
         datasets: [{
-            label: 'Lucro',
+            label: 'Porcentagem de Tempo',
             data: [75, 25],
             backgroundColor: ['#35ff35', '#ff2a2a'],
             borderColor: ['#000', '#000'],
@@ -336,7 +330,7 @@
                     labels: {
                         color: 'white',
                         font: {
-                            size: 14,
+                            size: 25,
                             family: 'Arial'
                         },
                         boxWidth: 20
