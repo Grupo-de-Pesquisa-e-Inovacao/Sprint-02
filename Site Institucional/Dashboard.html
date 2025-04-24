@@ -11,7 +11,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
 
     <title>Dashboard</title>
 </head>
@@ -47,62 +48,60 @@
 
     </div>
 
-
-    <!-- KPIS: taxa de mortalidade caiu tanto; a maior mortalidade foi no dia: ; a menor mortalidade foi no dia: ; sua variação de renda foi de: ; sua maior renda foi no mes de: ; sua menor renda foi no mes de: ; -->
-
+    <!-- Container que abriga toda dashboard -->
     <div id="divContainerGraficos">
 
+        <!-- KPI´s -->
         <!-- Exibição da temperatura atual do Aviário -->
         <div class="kpi" id="card1">
-            <h2>Temperatura Atual do Aviário</h2>
+            <h2>Temperatura em Celsius Atual do Aviário</h2>
             <span>22°C</span>
             <a>O ideal é estar entre 21°C e 26°C</a>
         </div>
+
         <!-- Exibição da temperatura atual do Aviário -->
         <div class="kpi" id="card2">
-            <h2>Temperatura Média do Dia do Aviário</h2>
-            <span>24°C</span>
-            <a>O ideal é variar entre 21°C e 26°C</a>
+            <h2>Temperatura Média Semanal do Aviário</h2>
+            <span>25.3°C</span>
+            <a>O ideal é a média variar entre 21°C e 26°C</a>
         </div>
+
         <!-- Exibição da temperatura atual do Aviário -->
         <div class="kpi" id="card3">
-            <h2>Tempo Diário Fora da Temperatura Ideal</h2>
-            <span>2 Horas</span>
-            <a>O ideal é estar abaixo de 1 hora diária<portal></portal></a>
+            <h2>Quantidade de Picos de Temperatura Semanal</h2>
+            <span>3</span>
+            <a>Quantidade de picos que ultrapassaram 30°C na semana<portal></portal></a>
         </div>
+
+
         <!-- Exibição da temperatura atual do Aviário -->
         <div class="kpi" id="card4">
-            <h2>Taxa de Mortalidade Semanal</h2>
-            <span>5.2%</span>
-            <a>O ideal é estar abaixo de 3% </a>
+            <h2>Variação de Temperatura Semanal</h2>
+            <span> 27°C</span>
+            <a>A variação ideal deve estar entre 5°C e 10°C</a>
         </div>
 
         <!-- Gráfico de linha que mede a temperatura semanal do Aviário -->
         <div id="divBox">
             <div class="divGraficos" id="temperaturaSemanal">
                 <canvas id="canvasTemperaturaSemanal"></canvas>
-                <!-- <br>
-            <p>A temperatura mínima na semana foi de <span style="color: aqua;">10°C</span> no Sábado</p>
-            <p>A temperatura máxima na semana foi de <span style="color:chocolate">45°C</span> no Domingo</p>
-            <p>Sua temperatura média na semana foi de <span style="color: green">22,43°C</span></p> -->
+                <p>A temperatura máxima atingiu seu pico de <span style="color: #ff2a2a;">37°C na Segunda-Feira</span>
+                </p>
+                <p>A temperatura mínima atingiu seu pico de <span style="color: #ff2a2a;">10°C no Sábado</span> </p>
+
             </div>
-            <div class="divGraficos" id="mortalidade">
+            <!-- <div class="divGraficos" id="mortalidade">
                 <canvas id="canvasMortalidade"></canvas>
-            </div>
+            </div> -->
         </div>
         <!-- Gráfico de Doughnut que exibe a porcentagem de boa temperatura e má temperatura mensal -->
         <div class="divGraficos" id="percentualTemperatura">
             <canvas id="canvasPercentualTemperatura"></canvas>
-            <p>Dentro dos últimos 30 dias, a temperatura esteve no intervalo ideal durante <span
-                    style="color: orange;">75%</span> do tempo.</p>
+            <p>Seu aviário ficou <span style="color: #ff2a2a;">7 dias e 12 horas</span> fora da temperatura ideal e
+                <span style="color: #35ff35;">22 dias e 12 horas</span> dentro da faixa ideal no mês de
+                abril<br><br> Temperatura ideal: entre 21°C e 26°C
+            </p>
         </div>
-
-
-        <!-- Gráfico de Linha que exibe a mortalidade mensal -->
-
-    </div>
-
-
     </div>
 
 </body>
@@ -118,7 +117,7 @@
         datasets: [
             {
                 label: 'Temperatura',
-                data: [45, 37, 30, 25, 30, 20, 10],
+                data: [25, 37, 33, 25, 32, 20, 10],
                 borderColor: '#fff45c',
                 backgroundColor: '#fff',
                 yAxisID: 'y',
@@ -142,7 +141,7 @@
                     labels: {
                         color: 'white',
                         font: {
-                            size: 14,
+                            size: 13,
                             family: 'Arial'
                         },
                         boxWidth: 20
@@ -150,11 +149,10 @@
                 },
                 title: {
                     display: true,
-                    text: 'Temperatura Semanal',
+                    text: 'Relatório de Temperatura Semanal',
                     color: 'White',
                     font: {
-                        size: 20,
-                        font: 'Poppins'
+                        size: 25
                     }
                 }
             },
@@ -163,13 +161,16 @@
                     ticks: {
                         color: '#fff',
                         font: {
-                            size: 10,
+                            size: 15,
                         }
                     },
                     title: {
                         display: true,
                         text: 'Dias da Semana',
-                        color: 'white'
+                        color: 'white',
+                        font: {
+                            size: 15
+                        }
                     }
                 },
                 y: {
@@ -184,13 +185,16 @@
                     ticks: {
                         color: '#fff',
                         font: {
-                            size: 15,
+                            size: 15
                         }
                     },
                     title: {
                         display: true,
                         text: 'Graus Celsius',
-                        color: 'white'
+                        color: 'white',
+                        font: {
+                            size: 15
+                        }
                     }
                 },
             }
@@ -201,99 +205,6 @@
         document.getElementById('canvasTemperaturaSemanal'),
         configLinha
     );
-
-
-
-
-
-    // Gráfico de Linha Mortalidade Semanal
-    const labelsLinhaMortalidade = ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'];
-
-    const dataLinhaMortalidade = {
-        labels: labelsLinhaMortalidade,
-        datasets: [
-            {
-                label: 'Mortalidade',
-                data: [10, 29, 28, 15, 22, 33, 22],
-                borderColor: '#ff2a2a',
-                backgroundColor: 'white',
-                yAxisID: 'y',
-                tension: 0.4,
-            }
-        ]
-    };
-
-    const configLinhaMortalidade = {
-        type: 'line',
-        data: dataLinhaMortalidade,
-        options: {
-            responsive: true,
-            interaction: {
-                mode: 'index',
-                intersect: false,
-            },
-            stacked: false,
-            plugins: {
-                legend: {
-                    labels: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            family: 'Arial'
-                        },
-                        boxWidth: 20
-                    }
-                },
-                title: {
-                    display: true,
-                    text: 'Mortalidade Semanal',
-                    color: 'White',
-                    font: {
-                        size: 20
-                    }
-                },
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: '#fff',
-                        font: {
-                            size: 10,
-                        }
-                    },
-                    title: {
-                        display: true,
-                        text: 'Dias da Semana',
-                        color: 'white',
-                    },
-                },
-                y: {
-                    type: 'linear',
-                    display: true,
-                    position: 'left',
-                    min: 0,
-                    max: 50,
-                    ticks: {
-                        color: '#fff',
-                        font: {
-                            size: 15,
-                        }
-                    },
-                    title: {
-                        display: true,
-                        text: 'Graus Celsius',
-                        color: 'white'
-                    }
-                },
-            }
-        },
-    };
-
-    const GraficoLinhaMortalidade = new Chart(
-        document.getElementById('canvasMortalidade'),
-        configLinhaMortalidade
-    );
-
 
 
 
@@ -338,7 +249,7 @@
                         return percentage;
                     }, //formatacao para porcentagem
                     color: 'black',
-                    
+
                     font: {
                         size: 30,
                         weight: 'bold'
