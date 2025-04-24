@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --azul: #32b9cd;
+  --amarelo: #fff45c;
+  --branco: #ffffff;
+  --preto: #000000;
+  --cinza: #141414;
+  --cinzaescuro: #080808;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+  background-color: var(--cinza);
+  overflow-x: hidden;
+}
+
+
+.header {
+  background-color: black;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+}
+
+
+.logo img {
+  height: 70px;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.center-links {
+  flex: 1;
+  justify-content: center;
+  display: flex;
+}
+
+.right-links {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-list li a {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  color: var(--amarelo);
+  text-decoration: none;
+  transition: 0.3s;
+  background-color: transparent;
+}
+
+.nav-list li a:hover {
+  background-color: var(--amarelo);
+  color: black;
+  border: 2px solid var(--amarelo);
+}
+
+.conteudoinicial {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-end;
+    background-image: url(Imagens/atendimento.png);
+    width: 100%;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-position-x: -200px;
+    background-position-y: -60px;
+    margin: 0;
+}
+.conteudoinicial h1 {
+    font-weight: bold;
+    color: white;
+    font-size: 30px;
+    margin-right: 100px;
+    margin-top: 20px;
+    opacity: 100%;
+}
+
+.conteudoinicial p {
+    opacity: 100%;
+}
+
+.mascara {
+    background-color: #000000;
+    opacity: 20%;
+}
+
+.titulo {
+
+color: var(--amarelo);
+
+}
