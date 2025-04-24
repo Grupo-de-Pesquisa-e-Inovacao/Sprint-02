@@ -11,15 +11,6 @@ CREATE TABLE pessoa_juridica (
     cnpj CHAR(14) NOT NULL
 );
 
-CREATE TABLE login(
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	usuario VARCHAR(45),
-    senha VARCHAR(30),
-    fk_pessoa_juridica INT,
-    CONSTRAINT fkPessoaJuridica FOREIGN KEY (fk_pessoa_juridica)
-		REFERENCES pessoa_juridica(id)
-);
-
 CREATE TABLE aviario (
 	id INT PRIMARY KEY,
     nome VARCHAR(45) NOT NULL,
@@ -31,9 +22,9 @@ CREATE TABLE aviario (
     cidade VARCHAR(45) NOT NULL,
     uf CHAR(2) NOT NULL,
     complemento VARCHAR(50),
-    fk_login INT,
-    CONSTRAINT fkLogin FOREIGN KEY (fk_login)
-		REFERENCES login(id)
+    fk_pessoa_juridica INT,
+    CONSTRAINT fkPessoaJuridica FOREIGN KEY (fk_pessoa_juridica)
+		REFERENCES pessoa_juridica(id)
 );
 
 CREATE TABLE setor(
@@ -68,57 +59,38 @@ CREATE TABLE medicao_temperatura (
     CONSTRAINT pkCompostaDadoSensor PRIMARY KEY (id, fk_sensor)
 );
 
--- Inserindo em pessoa_juridica
-INSERT INTO pessoa_juridica (razao_social, email_comercial, senha, telefone_comercial, cnpj)
-VALUES 
+INSERT INTO pessoa_juridica (razao_social, email_comercial, senha, telefone_comercial, cnpj) VALUES 
 ('Granja Bom Frango', 'contato@bomfrango.comt.br', 'senha123', '11987654321', '12345678000199'),
 ('Aviários Vale Verde', 'suporte@valeverde.comt.br', 'vale2024', '1133445566', '98765432000188'),
 ('Frango Feliz LTDA', 'comercial@frangofeliz.com', 'feliz2025', '1199887766', '45612378000166');
 
--- Inserindo em login (associado às pessoas jurídicas)
-INSERT INTO login (usuario, senha, fk_pessoa_juridica)
-VALUES 
-('bomfrango_admin', 'senha123', 1),
-('valeverde_user', 'vale2024', 2),
-('frangofeliz_root', 'feliz2025', 3);
-
--- Inserindo em aviario (cada um vinculado a um login)
-INSERT INTO aviario (id, nome, qtd_frangos, qtd_frangos_mortos, cep, logradouro, numero, cidade, uf, complemento, fk_login)
-VALUES 
+INSERT INTO aviario (id, nome, qtd_frangos, qtd_frangos_mortos, cep, logradouro, numero, cidade, uf, complemento, fk_pessoa_juridica) VALUES 
 (1, 'Aviário Central', 1000, 12, '12345678', 'Estrada da Granja', '150', 'São Paulo', 'SP', 'Próximo ao silo', 1),
 (2, 'Unidade Vale Norte', 800, 5, '87654321', 'Rodovia Verde', '300', 'Campinas', 'SP', 'Km 25', 2),
 (3, 'Polo Feliz Oeste', 1200, 20, '11223344', 'Av. das Aves', '789', 'Ribeirão Preto', 'SP', NULL, 3);
 
--- Setores para Aviário 1
-INSERT INTO setor (id, nome, fk_aviario)
-VALUES 
+INSERT INTO setor (id, nome, fk_aviario) VALUES 
 (1, 'Setor A1', 1),
 (2, 'Setor A2', 1),
 (3, 'Setor A3', 1),
 
--- Setores para Aviário 2
 (1, 'Setor B1', 2),
 (2, 'Setor B2', 2),
 (3, 'Setor B3', 2),
 
--- Setores para Aviário 3
 (1, 'Setor C1', 3),
 (2, 'Setor C2', 3),
 (3, 'Setor C3', 3);
 
-INSERT INTO sensor (modelo, tipo_leitura, num_serie, fk_setor, fk_setor_aviario)
-VALUES 
--- Aviário 1
+INSERT INTO sensor (modelo, tipo_leitura, num_serie, fk_setor, fk_setor_aviario) VALUES 
 ('LM35', 'Temperatura', 'LM35-A1-001', 1, 1),
 ('LM35', 'Temperatura', 'LM35-A2-002', 2, 1),
 ('LM35', 'Temperatura', 'LM35-A3-003', 3, 1),
 
--- Aviário 2
 ('LM35', 'Temperatura', 'LM35-B1-004', 1, 2),
 ('LM35', 'Temperatura', 'LM35-B2-005', 2, 2),
 ('LM35', 'Temperatura', 'LM35-B3-006', 3, 2),
 
--- Aviário 3
 ('LM35', 'Temperatura', 'LM35-C1-007', 1, 3),
 ('LM35', 'Temperatura', 'LM35-C2-008', 2, 3),
 ('LM35', 'Temperatura', 'LM35-C3-009', 3, 3);
@@ -129,8 +101,6 @@ INSERT INTO medicao_temperatura (temperatura, dt_hora, fk_sensor) VALUES
 (27.8, '2025-04-22 08:10:00', 3);
 
 SELECT * FROM pessoa_juridica;
-
-SELECT * FROM login;
 
 SELECT * FROM aviario;
 
@@ -145,19 +115,15 @@ SELECT a.nome AS Aviário,
     a.cep AS CEP,
     CONCAT(a.logradouro, ' ', a.numero, ' ', a.cidade, ' ', a.uf) AS Endereço,
     IFNULL(a.complemento, 'Sem complemento') as Complemento,
-    l.usuario AS 'Usuário dono'
+    pj.razao_social AS 'Usuário dono'
     FROM aviario AS a 
-	JOIN login AS l 
-		ON a.fk_login = l.id;
+	JOIN pessoa_juridica AS pj 
+		ON a.fk_pessoa_juridica = pj.id;
 
 SELECT pj.razao_social as 'Razão Social',
 	CONCAT(pj.email_comercial, ' - ', pj.telefone_comercial) as Contatos,
-    pj.cnpj as CNPJ,
-    l.usuario as Usuário,
-    l.senha as Senha
-    FROM pessoa_juridica as pj
-    JOIN login as l
-		ON l.fk_pessoa_juridica = pj.id;
+    pj.cnpj as CNPJ
+    FROM pessoa_juridica as pj;
 
 SELECT sensor.modelo as Modelo,
 	sensor.tipo_leitura as 'Tipo de leitura',
@@ -176,7 +142,7 @@ SELECT mt.temperatura as Temperatura,
     CONCAT(aviario.nome, ' - ', setor.nome) as 'Aviário & Setor',
     CASE
 		WHEN mt.temperatura < 19 THEN 'Abaixo do ideal'
-        WHEN mt.temperatura > 26 THEN 'Acima do ideal'
+        WHEN mt.temperatura > 28 THEN 'Acima do ideal'
         ELSE 'Temperatura ideal'
 	END as Situação
     FROM medicao_temperatura as mt
