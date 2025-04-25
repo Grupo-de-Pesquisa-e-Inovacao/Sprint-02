@@ -22,7 +22,7 @@ void loop() {
   temperaturaCelsius = ((valorLeitura * 5.0 / 1023.0) / 0.01) ;
   
   // Exibe a temperatura no gráfico
-  Serial.println(temperaturaCelsius - 10);
+  Serial.println(temperaturaCelsius);
 
   // Espera 5 segundos para proxima execução
   delay(3000);
