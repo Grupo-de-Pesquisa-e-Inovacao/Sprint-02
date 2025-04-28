@@ -49,16 +49,15 @@ CREATE TABLE sensor (
 		REFERENCES setor(fk_aviario)
 );
 
-CREATE TABLE medicao_temperatura (
+CREATE TABLE temperatura_celsius (
 	id INT AUTO_INCREMENT,
-    temperatura DECIMAL(4,2),
+    medicao DECIMAL(4,2),
     dt_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
     fk_sensor INT,
     CONSTRAINT fkSensor FOREIGN KEY (fk_sensor)
 		REFERENCES sensor(id),
     CONSTRAINT pkCompostaDadoSensor PRIMARY KEY (id, fk_sensor)
 );
-
 INSERT INTO pessoa_juridica (razao_social, email_comercial, senha, telefone_comercial, cnpj) VALUES 
 ('Granja Bom Frango', 'contato@bomfrango.comt.br', 'senha123', '11987654321', '12345678000199'),
 ('Aviários Vale Verde', 'suporte@valeverde.comt.br', 'vale2024', '1133445566', '98765432000188'),
@@ -95,7 +94,7 @@ INSERT INTO sensor (modelo, tipo_leitura, num_serie, fk_setor, fk_setor_aviario)
 ('LM35', 'Temperatura', 'LM35-C2-008', 2, 3),
 ('LM35', 'Temperatura', 'LM35-C3-009', 3, 3);
 
-INSERT INTO medicao_temperatura (temperatura, dt_hora, fk_sensor) VALUES
+INSERT INTO temperatura_celsius (medicao, dt_hora, fk_sensor) VALUES
 (28.5, '2025-04-22 08:00:00', 1),
 (29.1, '2025-04-22 08:05:00', 2),
 (27.8, '2025-04-22 08:10:00', 3);
@@ -108,7 +107,7 @@ SELECT * FROM setor;
 
 SELECT * FROM sensor;
 
-SELECT * FROM medicao_temperatura;
+SELECT * FROM temperatura_celsius;
 
 SELECT a.nome AS Aviário,
 	a.qtd_frangos AS 'Quantidade de Frangos',
