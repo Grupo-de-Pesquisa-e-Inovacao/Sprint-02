@@ -4,16 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Login</title>
+
+    <script src="./js/sessao.js"></script>
+
 </head>
 
 <body>
 
     <div class="div_containerLogin">
+
+        <!-- Mensagem de erro para todos campos em branco -->
+        <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+        </div>
 
         <div class="div_boxLogin">
 
@@ -44,11 +54,15 @@
                     </div>
                 </div>
 
-                
+
             </form>
-            
+
             <button class="botao_Login" onclick="validar()">Entrar</button>
-        
+
+            <div id="div_aguardar" class="loading-div">
+                <img src="./Imagens/circle-loading.gif" id="loading-gif">
+            </div>
+            <div id="div_erros_login"></div>
         </div>
 
     </div>
@@ -64,6 +78,7 @@
                 <span>Ainda não possuí uma conta? <a href="Cadastro.html" tabindex="-1">Criar conta</a></span>
             </div>
         </div>
+
     </div>
 
 </body>
@@ -85,27 +100,73 @@
 
     function validar() {
         // Variáveis
-        var email = i_emailLogin.value;
-        var senha = i_senhaLogin.value;
+        var emailVar = i_emailLogin.value;
+        var senhaVar = i_senhaLogin.value;
 
-        // Exemplificando com a senha "Fernanda123#" e email "fernanda@g.com"
-        if (email != '' && senha != '') {
-            if (senha == 'Fernanda123#' && email == 'fernanda@g.com') {
-                alert(`Bem-vindo de volta! \n \nEstavamos esperando você`);
-                window.location.href = "indexCadastrado.html"
-
-            } else if (senha != `Fernanda123` && email == `fernanda@g.com`) {
-                alert(`A senha está incorreta, tente novamente!`)
-
-            } else if (senha == `Fernanda123` && email != `fernanda@g.com`) {
-                alert(`O email está incorreto, tente novamente!`)
-
-            } else if (senha != `Fernanda123` && email != `fernanda@g.com`) {
-                alert(`A senha e o email estão incorretos, tente novamente!`)
-
-            }
-        } else {
-            alert('Preencha todos os campos!')
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Preencha todos os campos!";
+            finalizarAguardar();
+            return false;
         }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            // fetch faz requisições em outros arquivos; nesse caso, ele chama a função autenticar no arquivo usuarioController.js do diretório controllers para "puxar" valores para cá
+            // ele também envia (requisição, POST) os dados do login (email e senha) para usuario.js da pasta routes
+
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_PESSOA_JURIDICA = json.email_comercial;
+                    sessionStorage.RAZAO_PESSOA_JURIDICA = json.razao_social;
+                    sessionStorage.TELEFONE_PESSOA_JURIDICA = json.telefone_comercial;
+                    sessionStorage.CNPJ_PESSOA_JURIDICA = json.cnpj;
+                    sessionStorage.ID_PESSOA_JURIDICA = json.id
+
+                    setTimeout(function () {
+                        window.location = "telaInicial.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
     }
 </script>
