@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -20,10 +20,10 @@
 <body>
 
     <div id="divContainerInformacoes">
-        <div id="divTituloPagina">Dashboard</div>
+        <div id="divTituloPagina">Temperatura</div>
         <a class="divNavbar" href="#">
             <i class="fa-solid fa-user"></i>
-            <p class="textoOpcao">Perfil</p>
+            <p class="textoOpcao" id="p_nomeUsuario">Perfil</p>
         </a>
         <a class="divNavbar" href="#">
             <i class="fa-solid fa-bell"></i>
@@ -109,6 +109,7 @@
 </html>
 
 <script>
+    p_nomeUsuario.innerHTML = sessionStorage.RAZAO_PESSOA_JURIDICA;
     // Gráfico de Linha: Temperatura Semanal
     const labelsLinha = ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'];
 
