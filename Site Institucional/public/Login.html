@@ -137,11 +137,11 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_PESSOA_JURIDICA = json.email_comercial;
+                    sessionStorage.EMAIL_PESSOA_JURIDICA = json.email;
                     sessionStorage.RAZAO_PESSOA_JURIDICA = json.razao_social;
                     sessionStorage.TELEFONE_PESSOA_JURIDICA = json.telefone_comercial;
                     sessionStorage.CNPJ_PESSOA_JURIDICA = json.cnpj;
-                    sessionStorage.ID_PESSOA_JURIDICA = json.id
+                    sessionStorage.ID_PESSOA_JURIDICA = json.id;
 
                     setTimeout(function () {
                         window.location = "telaInicial.html";
