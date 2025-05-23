@@ -290,7 +290,7 @@ span {
 }
 
 .section-content {
-  background-image: url("Imagens/background.png"), linear-gradient(to top left, #000 35%, #141414 100%);
+  background-image: url("/Imagens/background.png"), linear-gradient(to top left, #000 35%, #141414 100%);
   background-size: cover;
   background-repeat: no-repeat;
   margin-left: 50px;

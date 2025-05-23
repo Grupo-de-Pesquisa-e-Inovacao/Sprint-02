@@ -79,7 +79,6 @@ body {
 .nav-list li a:hover {
   background-color: var(--amarelo);
   color: black;
-  border: 2px solid var(--amarelo);
 }
 
 

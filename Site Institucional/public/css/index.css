@@ -32,6 +32,7 @@ body {
   display: flex;
   align-items: center;
   padding: 10px 30px;
+  border-bottom: 1px solid var(--amarelo);
 }
 
 
@@ -71,7 +72,7 @@ body {
 .nav-list li a:hover {
   background-color: var(--amarelo);
   color: black;
-  border: 2px solid var(--amarelo);
+    transform: scale(1.1);
 }
 
 .conteudoinicial {
@@ -116,29 +117,31 @@ body {
   top: calc(170px + 300px - 4px);
   left: 0;
   width: 100vw;
-  height: 2px;
-  background-color: var(--cinzaescuro);
+  height: 1px;
+  background-color: var(--amarelo);
   z-index: 2;
 }
 
 .beneficios-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   padding: 20px;
   gap: 20px;
 }
 
 .beneficio {
+  display: flex;
+  flex-direction: column;
   flex: 1 1 250px;
   max-width: 300px;
   padding: 15px;
-  text-align: left;
+  text-align: center;
 }
 
 .beneficiosimg img {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   margin-bottom: 10px;
   margin-left: 20px;
 }
@@ -146,7 +149,7 @@ body {
 .titulobeneficios p {
   color: var(--branco);
   font-weight: bold;
-  font-size: 14px;
+  font-size: 20px;
   margin: 5px 0;
   margin-left: 20px;
 }
@@ -223,11 +226,12 @@ span {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   color: #000;
+
 }
 
 .card:hover {
   transform: translateY(-10px);
-  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 7px 7px #555;
 }
 
 .card h4 {
@@ -278,7 +282,7 @@ span {
 }
 
 .section-content {
-  background-image: url("Imagens/background.png"), linear-gradient(to top left, #000 35%, #141414 100%);
+  background-image: url("/Imagens/background.png"), linear-gradient(to top left, #000 35%, #141414 100%);
   background-size: cover;
   background-repeat: no-repeat;
   margin-left: 50px;

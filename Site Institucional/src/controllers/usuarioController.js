@@ -28,10 +28,9 @@ function autenticar(req, res) {
                                     res.json({
                                         id: resultadoAutenticar[0].id,
                                         email: resultadoAutenticar[0].email_comercial,
-                                        razãoSocial: resultadoAutenticar[0].razao_social,
-                                        senha: resultadoAutenticar[0].senha,
-                                        telefone: resultadoAutenticar[0].telefone_comercial,
-                                        cpf: resultadoAutenticar[0].cnpj
+                                        razao_social: resultadoAutenticar[0].razao_social,
+                                        telefone_comercial: resultadoAutenticar[0].telefone_comercial,
+                                        cnpj: resultadoAutenticar[0].cnpj
                                     });
                             //     } else {
                             //         res.status(204).json({ aquarios: [] });

@@ -19,10 +19,10 @@
     <script src="./js/alerta.js"></script>
 </head>
 
-<body>
+<body onload="validarSessao()">
 
     <div id="divContainerInformacoes">
-        <div id="divTituloPagina">Temperatura</div>
+        <div id="b_usuario" class="divTituloPagina"></div>
         <a class="divNavbar" href="#">
             <i class="fa-solid fa-user"></i>
             <p class="textoOpcao" id="cnpj">Perfil</p>
@@ -43,7 +43,7 @@
             <i class="fa-solid fa-gear"></i>
             <p class="textoOpcao">Configurações</p>
         </a>
-        <a class="divNavbar" href="indexCadastrado.html">
+        <a class="divNavbar" href="index.html">
             <i class="fa-solid fa-right-from-bracket"></i>
             <p class="textoOpcao">Sair</p>
         </a>

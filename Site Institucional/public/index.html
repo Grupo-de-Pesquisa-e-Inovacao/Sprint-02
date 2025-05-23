@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AviTrack | Página Inicial</title>
     <link rel="stylesheet" href="./css/index.css" />
+
+    <script src="./js/sessao.js"></script>
 </head>
 
-<body>
+<body onload="validarSessao()">
     <div class="header">
         <div class="navbar">
             <a href="index.html" class="logo">
@@ -17,11 +19,13 @@
 
             <ul class="nav-list center-links">
                 <li><a href="SimuladorFinanceiro.html">Simulador Financeiro</a></li>
+                <li><a href="Dashboard.html" style="visibility: hidden;" id="botaoDashboard">Dashboard</a></li>
+
             </ul>
 
             <ul class="nav-list right-links">
-                <li><a href="Cadastro.html">Cadastre-se</a></li>
-                <li><a href="Login.html">Login</a></li>
+                <li><a href="Cadastro.html" id="b_usuario">Cadastre-se</a></li>
+                <li><a href="Login.html" id="botaoLogin">Login</a></li>
             </ul>
         </div>
     </div>
@@ -129,80 +133,81 @@
 
     <div class="entenda">
         <div class="conteudo-entenda">
-        <div class="entenda-conteudo">
-            <h4>AviTrack</h4>
-            <h2>Entenda o funcionamento</h2>
-            <p>
-                Nosso sistema foi desenvolvido para tornar o monitoramento da temperatura do aviário simples e
-                eficiente. Veja como é fácil implementar essa tecnologia na sua produção.
-            </p>
+            <div class="entenda-conteudo">
+                <h4>AviTrack</h4>
+                <h2>Entenda o funcionamento</h2>
+                <p>
+                    Nosso sistema foi desenvolvido para tornar o monitoramento da temperatura do aviário simples e
+                    eficiente. Veja como é fácil implementar essa tecnologia na sua produção.
+                </p>
+            </div>
         </div>
     </div>
-</div>
 
-        <div class="section-content">
-            <div class="step">
-                <h2 class="zero-margin">
-                  <img src="Imagens/seta.png" alt="Icone de seta" class="seta" />
-                  Agendamento
-                </h2>
-                <p>Entre em contato com a nossa equipe e agende uma avaliação. Vamos entender suas necessidades e definir o melhor plano para sua produção.</p>
-              </div>
-
-              <div class="step">
-                <h2>
-                  <img src="Imagens/seta.png" alt="Icone de seta" class="seta" />
-                  Instalação
-                </h2>
-                <p>Nossos especialistas instalam os sensores LM35 nos pontos estratégicos do aviário, garantindo
-                    precisão no monitoramento. Todo o processo é rápido e sem complicações.</p>
-              </div>
-            
-            <div class="step">
-                <h2>
-                    <img src="Imagens/seta.png" alt="Icone de seta" class="seta" />
-                    Resultados
-                  </h2>
-                  
-                  <p>Com os sensores ativos, você acompanha a temperatura do ambiente, mesmo não estando no aviário,
-                    recebe alertas automáticos e toma decisões inteligentes para garantir uma melhor produtividade.</p>
-                </div>
+    <div class="section-content">
+        <div class="step">
+            <h2 class="zero-margin">
+                <img src="Imagens/seta.png" alt="Icone de seta" class="seta" />
+                Agendamento
+            </h2>
+            <p>Entre em contato com a nossa equipe e agende uma avaliação. Vamos entender suas necessidades e definir o
+                melhor plano para sua produção.</p>
         </div>
+
+        <div class="step">
+            <h2>
+                <img src="Imagens/seta.png" alt="Icone de seta" class="seta" />
+                Instalação
+            </h2>
+            <p>Nossos especialistas instalam os sensores LM35 nos pontos estratégicos do aviário, garantindo
+                precisão no monitoramento. Todo o processo é rápido e sem complicações.</p>
+        </div>
+
+        <div class="step">
+            <h2>
+                <img src="Imagens/seta.png" alt="Icone de seta" class="seta" />
+                Resultados
+            </h2>
+
+            <p>Com os sensores ativos, você acompanha a temperatura do ambiente, mesmo não estando no aviário,
+                recebe alertas automáticos e toma decisões inteligentes para garantir uma melhor produtividade.</p>
+        </div>
+    </div>
     </div>
 
     <footer class="footer">
         <div class="footer-left">
-          <img src="Imagens/logoGalinha.png" alt="Logo da galinha" class="logoGalinha" />
-          <p class="footer-credit">© 2025 AviTrack</p>
+            <img src="Imagens/logoGalinha.png" alt="Logo da galinha" class="logoGalinha" />
+            <p class="footer-credit">© 2025 AviTrack</p>
         </div>
-      
+
         <div class="footer-links">
-          <div class="footer-col">
-            <strong>Companhia</strong>
-            <p>Política de privacidade</p>
-            <p>Cookies e políticas</p>
-            <p>Termos de serviço</p>
-          </div>
-      
-          <div class="footer-col">
-            <strong>Institucional</strong>
-            <p>Quem somos</p>
-            <p>Investidores</p>
-          </div>
-      
-          <div class="footer-col">
-            <strong>Contato</strong>
-            <p>Avitrack@hotmail.com</p>
-            <p>+55 (11) 98765-4321</p>
-            <div class="social-icons">
-              <img src="Imagens/instaLogo.png" alt="Instagram" />
-              <img src="Imagens/faceLogo.png" alt="Facebook" />
-              <img src="Imagens/whatsappLogo.png" alt="WhatsApp" />
+            <div class="footer-col">
+                <strong>Companhia</strong>
+                <p>Política de privacidade</p>
+                <p>Cookies e políticas</p>
+                <p>Termos de serviço</p>
             </div>
-          </div>
+
+            <div class="footer-col">
+                <strong>Institucional</strong>
+                <p>Quem somos</p>
+                <p>Investidores</p>
+            </div>
+
+            <div class="footer-col">
+                <strong>Contato</strong>
+                <p>Avitrack@hotmail.com</p>
+                <p>+55 (11) 98765-4321</p>
+                <div class="social-icons">
+                    <img src="Imagens/instaLogo.png" alt="Instagram" />
+                    <img src="Imagens/faceLogo.png" alt="Facebook" />
+                    <img src="Imagens/whatsappLogo.png" alt="WhatsApp" />
+                </div>
+            </div>
         </div>
-      </footer>
-      
+    </footer>
+
 </body>
 
 </html>
