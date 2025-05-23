@@ -106,11 +106,11 @@
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Preencha todos os campos!";
-            finalizarAguardar();
+            // finalizarAguardar();
             return false;
         }
         else {
-            setInterval(sumirMensagem, 5000)
+            // setInterval(sumirMensagem, 5000)
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -143,10 +143,9 @@
                     sessionStorage.CNPJ_PESSOA_JURIDICA = json.cnpj;
                     sessionStorage.ID_PESSOA_JURIDICA = json.id;
 
-                    setTimeout(function () {
-                        window.location = "telaInicial.html";
-                    }, 1000); // apenas para exibir o loading
-
+                
+                    window.location = "index.html";
+           
                 });
 
             } else {
@@ -155,7 +154,7 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
+                    // finalizarAguardar(texto);
                 });
             }
 
@@ -164,9 +163,5 @@
         })
 
         return false;
-    }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
     }
 </script>

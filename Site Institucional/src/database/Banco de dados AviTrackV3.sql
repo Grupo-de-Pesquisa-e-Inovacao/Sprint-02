@@ -10,6 +10,7 @@ CREATE TABLE pessoa_juridica (
     telefone_comercial CHAR(19) NOT NULL,
     cnpj CHAR(18) NOT NULL
 );
+
 select * from pessoa_juridica;
 
 

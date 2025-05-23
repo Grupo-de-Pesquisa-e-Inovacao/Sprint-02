@@ -9,24 +9,27 @@
   <link rel="preconnect" href="https://rsms.me/">
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
+    <script src="./js/sessao.js"></script>
+
+
   <title>Simulador Financeiro Avitrack Solutions</title>
 </head>
 
-<body>
+<body onload="validarSessao()">
   <div class="header">
     <div class="navbar">
       <a href="index.html" class="logo">
-        <img src="Imagens/Avitrack Logotipo.png" alt="Logo" />
+        <img src="Imagens/Avitrack Logotipo.png" alt="Logo"/>
       </a>
 
       <ul class="nav-list center-links">
-        <li><a href="index.html">início</a></li>
-        <li><a href="SimuladorFinanceiro.html">Simulador Financeiro</a></li>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="Dashboard.html" style="visibility: hidden;" id="botaoDashboard">Dashboard</a></li>
       </ul>
 
       <ul class="nav-list right-links">
-        <li><a href="Cadastro.html">Cadastre-se</a></li>
-        <li><a href="Login.html">Login</a></li>
+        <li><a href="Cadastro.html" id="b_usuario">Cadastre-se</a></li>
+        <li><a href="Login.html" id="botaoLogin">Login</a></li>
       </ul>
     </div>
   </div>
